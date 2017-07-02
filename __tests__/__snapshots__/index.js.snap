@@ -146,16 +146,8 @@ async ({ page }) => await import(\`../components/\${page}\`);
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
 import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
 import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
-async ({ page }) => await _universalImport({
-  id: \\"../components/\${page}\\",
-  file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`)]),
-  path: () => _path.join(__dirname, \`../components/\${page}\`),
-  resolve: () => require.resolveWeak(\`../components/\${page}\`),
-  chunkName: () => \`components/\${page}\`
-});
+async ({ page }) => await _universalImport(() => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`)]), false);
 "
 `;

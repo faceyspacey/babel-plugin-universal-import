@@ -157,7 +157,10 @@ module.exports = function ({ types: t, template }) {
         const universalImport = getUniversalImport(p)
 
         // if being used in an await statement, return load() promise
-        if (p.parentPath.parentPath.isYieldExpression()) {
+        if (
+          p.parentPath.parentPath.isYieldExpression() || // await transformed already
+          t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
+        ) {
           const func = t.callExpression(universalImport, [
             loadOption(p, importArgNode).value,
             t.booleanLiteral(false)
