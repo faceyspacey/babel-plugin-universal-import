@@ -1,0 +1,14 @@
+node_modules
+__tests__
+__test-helpers__
+.vscode
+*.log
+src
+.babelrc
+.codeclimate.yml
+.editorconfig
+.eslintrc.js
+.snyk
+.travis.yml
+wallaby.js
+webpack.config.js

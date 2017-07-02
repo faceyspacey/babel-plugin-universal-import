@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`1. static import 1`] = `
+"
+import(\\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo\\"), _importCss(\\"Foo\\")]),
+  path: () => _path.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`2. static import (with relative paths) 1`] = `
+"
+import(\\"../../Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"../../Foo\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"../../Foo\\"), _importCss(\\"Foo\\")]),
+  path: () => _path.join(__dirname, \\"../../Foo\\"),
+  resolve: () => require.resolveWeak(\\"../../Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`3. static import (with file extension) 1`] = `
+"
+import(\\"./Foo.js\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo.js\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo.js\\"), _importCss(\\"Foo\\")]),
+  path: () => _path.join(__dirname, \\"./Foo.js\\"),
+  resolve: () => require.resolveWeak(\\"./Foo.js\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`4. static import (string template) 1`] = `
+"
+import(\`./base\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./base\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`./base\`), _importCss(\`base\`)]),
+  path: () => _path.join(__dirname, \`./base\`),
+  resolve: () => require.resolveWeak(\`./base\`),
+  chunkName: () => \`base\`
+});
+"
+`;
+
+exports[`5. static import (string template + relative paths) 1`] = `
+"
+import(\`../../base\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"../../base\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`../../base\`), _importCss(\`base\`)]),
+  path: () => _path.join(__dirname, \`../../base\`),
+  resolve: () => require.resolveWeak(\`../../base\`),
+  chunkName: () => \`base\`
+});
+"
+`;
+
+exports[`6. dynamic import (string template) 1`] = `
+"
+import(\`./base/\${page}\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./base/\${page}\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}\`), _importCss(\`base/\${page}\`)]),
+  path: () => _path.join(__dirname, \`./base/\${page}\`),
+  resolve: () => require.resolveWeak(\`./base/\${page}\`),
+  chunkName: () => \`base/\${page}\`
+});
+"
+`;
+
+exports[`7. dynamic import (string template + relative paths) 1`] = `
+"
+import(\`../../base/\${page}\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"../../base/\${page}\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`../../base/\${page}\`), _importCss(\`base/\${page}\`)]),
+  path: () => _path.join(__dirname, \`../../base/\${page}\`),
+  resolve: () => require.resolveWeak(\`../../base/\${page}\`),
+  chunkName: () => \`base/\${page}\`
+});
+"
+`;
+
+exports[`8. await import() should receive a thennable without calling .then 1`] = `
+"
+async ({ page }) => await import(\`../components/\${page}\`);
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+async ({ page }) => await _universalImport({
+  id: \\"../components/\${page}\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`)]),
+  path: () => _path.join(__dirname, \`../components/\${page}\`),
+  resolve: () => require.resolveWeak(\`../components/\${page}\`),
+  chunkName: () => \`components/\${page}\`
+});
+"
+`;
