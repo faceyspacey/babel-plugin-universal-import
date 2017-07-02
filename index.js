@@ -60,12 +60,13 @@ module.exports = function ({ types: t, template }) {
     if (importArgNode.quasis) {
       const quasis = importArgNode.quasis.slice(0)
       const baseDir = trimChunkNameBaseDir(quasis[0].value.cooked)
-      quasis[0] = { ...quasis[0], value: { raw: baseDir, cooked: baseDir } }
-
-      return (importArgNode = {
-        ...importArgNode,
-        quasis
+      quasis[0] = Object.assign({}, quasis[0], {
+        value: { raw: baseDir, cooked: baseDir }
       })
+
+      return (importArgNode = Object.assign({}, importArgNode, {
+        quasis
+      }))
     }
 
     const moduleName = trimChunkNameBaseDir(importArgNode.value)
