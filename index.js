@@ -64,9 +64,9 @@ module.exports = function ({ types: t, template }) {
         value: { raw: baseDir, cooked: baseDir }
       })
 
-      return (importArgNode = Object.assign({}, importArgNode, {
+      return Object.assign({}, importArgNode, {
         quasis
-      }))
+      })
     }
 
     const moduleName = trimChunkNameBaseDir(importArgNode.value)
