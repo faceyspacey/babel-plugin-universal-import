@@ -13,7 +13,6 @@
   "homepage": "https://github.com/faceyspacey/babel-plugin-universal-import#readme",
   "author": "James Gillmore james@faceyspacey.com>",
   "license": "MIT",
-  "files": [],
   "scripts": {
     "test": "jest",
     "lint": "eslint --fix ./",
