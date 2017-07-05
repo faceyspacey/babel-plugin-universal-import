@@ -36,7 +36,7 @@ module.exports = function(chunkName) {
     // since images can't load css
     var img = document.createElement('img')
     img.onerror = function() {
-      link.onload()
+      link.onload && link.onload()
     }
     img.src = href
   })
