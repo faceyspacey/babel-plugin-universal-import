@@ -31,6 +31,14 @@ module.exports = function(chunkName) {
 
     timeout = setTimeout(link.onerror, link.timeout)
     head.appendChild(link)
+
+    // link.onload doesn't work well enough, but this will handle it
+    // since images can't load css
+    var img = document.createElement('img')
+    img.onerror = function() {
+      link.onload()
+    }
+    img.src = href
   })
 }
 
