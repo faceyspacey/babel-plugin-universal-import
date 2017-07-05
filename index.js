@@ -18,7 +18,7 @@ module.exports = function ({ types: t, template }) {
   }
 
   function trimChunkNameBaseDir(baseDir) {
-    return baseDir.replace(/^[\W]+|(\.js$)/g, '')
+    return baseDir.replace(/^[./]+|(\.js$)/g, '')
   }
 
   function getUniversalImport(p) {
@@ -80,7 +80,7 @@ module.exports = function ({ types: t, template }) {
     const baseDir = quasis[0].value.cooked
     const hasExpressions = expressions.length > 0
     const chunkName = baseDir + (hasExpressions ? '[request]' : '')
-    return trimChunkNameBaseDir(chunkName.replace(/^\.\//, ''))
+    return trimChunkNameBaseDir(chunkName)
   }
 
   function getComponentId(importArgNode) {
