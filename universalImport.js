@@ -1,8 +1,6 @@
 /* eslint-disable */
-var isSet = false
 
 module.exports = function(config, makeThennable) {
-  if (!isSet) setHasPlugin()
   if (makeThennable === false) return config
 
   var load = config.load
@@ -11,7 +9,10 @@ module.exports = function(config, makeThennable) {
   return config
 }
 
+var isSet = false
+
 function setHasPlugin() {
+  if (isSet) return
   var universal
   var isWebpack = typeof __webpack_require__ !== 'undefined'
 
@@ -30,3 +31,5 @@ function setHasPlugin() {
     }
   } catch (e) {}
 }
+
+setHasPlugin()
