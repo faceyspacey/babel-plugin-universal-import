@@ -24,6 +24,8 @@ pluginTester({
     'static import (string template)': 'import(`./base`)',
     'static import (string template + relative paths)': 'import(`../../base`)',
     'dynamic import (string template)': 'import(`./base/${page}`)',
+    'dynamic import (string template - dynamic at 1st segment)':
+      'import(`./${page}`)',
     'dynamic import (string template + relative paths)':
       'import(`../../base/${page}`)',
     'await import() should receive a thennable without calling .then':

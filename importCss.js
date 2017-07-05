@@ -1,9 +1,11 @@
-module.exports = function (chunkName) {
-  const href = getHref(chunkName)
+/* eslint-disable */
+
+module.exports = function(chunkName) {
+  var href = getHref(chunkName)
   if (!chunkName) return
 
-  const head = document.getElementsByTagName('head')[0]
-  const link = document.createElement('link')
+  var head = document.getElementsByTagName('head')[0]
+  var link = document.createElement('link')
 
   link.href = href
   link.charset = 'utf-8'
@@ -12,16 +14,16 @@ module.exports = function (chunkName) {
   link.timeout = 30000
 
   return new Promise((resolve, reject) => {
-    let timeout
+    var timeout
 
-    link.onerror = function () {
+    link.onerror = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
-      const message = `could not load css chunk:${chunkName}`
+      var message = `could not load css chunk:${chunkName}`
       reject(new Error(message))
     }
 
-    link.onload = function () {
+    link.onload = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
       resolve()

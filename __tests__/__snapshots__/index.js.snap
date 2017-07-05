@@ -120,7 +120,27 @@ _universalImport({
 "
 `;
 
-exports[`7. dynamic import (string template + relative paths) 1`] = `
+exports[`7. dynamic import (string template - dynamic at 1st segment) 1`] = `
+"
+import(\`./\${page}\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./\${page}\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: '[request]' */\`./\${page}\`), _importCss(\`\${page}\`)]),
+  path: () => _path.join(__dirname, \`./\${page}\`),
+  resolve: () => require.resolveWeak(\`./\${page}\`),
+  chunkName: () => \`\${page}\`
+});
+"
+`;
+
+exports[`8. dynamic import (string template + relative paths) 1`] = `
 "
 import(\`../../base/\${page}\`)
 
@@ -140,7 +160,7 @@ _universalImport({
 "
 `;
 
-exports[`8. await import() should receive a thennable without calling .then 1`] = `
+exports[`9. await import() should receive a thennable without calling .then 1`] = `
 "
 async ({ page }) => await import(\`../components/\${page}\`);
 
