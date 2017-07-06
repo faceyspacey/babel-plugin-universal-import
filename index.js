@@ -10,7 +10,7 @@ module.exports = function ({ types: t, template }) {
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
   const loadTemplate = template(
-    '() => Promise.all([IMPORT, IMPORT_CSS(MODULE)])'
+    '() => Promise.all([IMPORT, IMPORT_CSS(MODULE)]).then(proms => proms[0])'
   )
 
   function getImportArgPath(p) {
