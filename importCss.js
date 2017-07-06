@@ -10,7 +10,7 @@ module.exports = function(chunkName) {
   link.href = href
   link.charset = 'utf-8'
   link.type = 'text/css'
-  link.rel = 'stylehsheet'
+  link.rel = 'stylesheet'
   link.timeout = 30000
 
   return new Promise((resolve, reject) => {
@@ -23,21 +23,17 @@ module.exports = function(chunkName) {
       reject(new Error(message))
     }
 
-    link.onload = function() {
-      link.onerror = link.onload = null // avoid mem leaks in IE.
+    // link.onload doesn't work well enough, but this will handle it
+    // since images can't load css (this is a popular fix)
+    var img = document.createElement('img')
+    img.onerror = function() {
+      link.onerror = img.onerror = null // avoid mem leaks in IE.
       clearTimeout(timeout)
       resolve()
     }
 
     timeout = setTimeout(link.onerror, link.timeout)
     head.appendChild(link)
-
-    // link.onload doesn't work well enough, but this will handle it
-    // since images can't load css
-    var img = document.createElement('img')
-    img.onerror = function() {
-      link.onload && link.onload()
-    }
     img.src = href
   })
 }
