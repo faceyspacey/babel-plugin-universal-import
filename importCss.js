@@ -30,13 +30,13 @@ module.exports = function(chunkName) {
   link.rel = 'stylesheet'
   link.timeout = 30000
 
-  return new Promise((resolve, reject) => {
+  return new Promise(function(resolve, reject) {
     var timeout
 
     link.onerror = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
-      var message = `could not load css chunk:${chunkName}`
+      var message = 'could not load css chunk:${chunkName}'
       reject(new Error(message))
     }
 
