@@ -2,7 +2,24 @@
 
 module.exports = function(chunkName) {
   var href = getHref(chunkName)
-  if (!href) return
+  if (!href) {
+    if (process.env.NODE_ENV === 'development') {
+      if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) {
+        console.warn(
+          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__"'
+        )
+        return
+      }
+
+      console.warn(
+        '[UNIVERSAL-IMPORT] no chunk, ',
+        chunkName,
+        ', found in "window.__CSS_CHUNKS__"'
+      )
+    }
+
+    return
+  }
 
   var head = document.getElementsByTagName('head')[0]
   var link = document.createElement('link')
