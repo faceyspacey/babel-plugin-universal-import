@@ -4,8 +4,14 @@ module.exports = function(config, makeThennable) {
   if (makeThennable === false) return config
 
   var load = config.load
-  config.then = cb => load().then(res => cb && cb(res))
-  config.catch = cb => load().catch(e => cb && cb(e))
+  config.then = cb =>
+    load().then(function(res) {
+      cb && cb(res)
+    })
+  config.catch = cb =>
+    load().catch(function(e) {
+      e => cb && cb(e)
+    })
   return config
 }
 

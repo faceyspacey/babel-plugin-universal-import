@@ -2,7 +2,7 @@
 
 module.exports = function(chunkName) {
   var href = getHref(chunkName)
-  if (!chunkName) return
+  if (!href) return
 
   var head = document.getElementsByTagName('head')[0]
   var link = document.createElement('link')
