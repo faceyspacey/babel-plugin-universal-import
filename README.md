@@ -52,15 +52,15 @@ universal(import('./Foo.js'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { importCss as _importCss } from 'babel-plugin-universal-import/importCss.js'
-import _path from 'path'
-import { universalImport as _universalImport } from 'babel-plugin-universal-import/universalImport.js'
+import universalImport from 'babel-plugin-universal-import/universalImport.js'
+import importCss from 'babel-plugin-universal-import/importCss.js'
+import path from 'path'
 
-universal(_universalImport({
+universal(universalImport({
   chunkName: () => 'Foo',
-  path: () => _path.join(__dirname, './Foo.js'),
+  path: () => path.join(__dirname, './Foo.js'),
   resolve: () => require.resolveWeak('./Foo.js'),
-  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */ './Foo.js'), _importCss('Foo')]),
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */ './Foo.js'), importCss('Foo')]),
   id: './Foo.js',
   file: 'parentFile.js',
 }))
@@ -73,15 +73,15 @@ universal(({ page }) => import(`../async/${page}`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { importCss as _importCss } from 'babel-plugin-universal-import/importCss.js'
-import _path from 'path'
-import { universalImport as _universalImport } from 'babel-plugin-universal-import/universalImport.js'
+import universalImport from 'babel-plugin-universal-import/universalImport.js'
+import importCss from 'babel-plugin-universal-import/importCss.js'
+import path from 'path'
 
-universal(({ page }) => _universalImport({
+universal(({ page }) => universalImport({
   chunkName: () => `async/${page}`,
-  path: () => _path.join(__dirname, `../async/${page}`),
+  path: () => path.join(__dirname, `../async/${page}`),
   resolve: () => require.resolveWeak(`../async/${page}`),
-  load: () => Promise.all([import( /* webpackChunkName: 'async/[request]' */ `../async/${page}`), _importCss(`async/${page}`)]),
+  load: () => Promise.all([import( /* webpackChunkName: 'async/[request]' */ `../async/${page}`), importCss(`async/${page}`)]),
   id: '../async/${page}',
   file: 'parentFile.js',
 }));
