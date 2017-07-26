@@ -6,7 +6,7 @@ module.exports = function(chunkName) {
     if (process.env.NODE_ENV === 'development') {
       if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) {
         console.warn(
-          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__"'
+          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__". Make sure you are using: https://www.npmjs.com/package/extract-css-chunks-webpack-plugin .'
         )
         return
       }
