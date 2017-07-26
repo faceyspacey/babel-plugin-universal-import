@@ -48,10 +48,12 @@ yarn add babel-plugin-universal-import
 Taking from the [test snapshots](./__tests__/__snapshots__/index.js.snap), it does this:
 
 ```js
+import universal from 'react-universal-component'
 universal(import('./Foo.js'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+import universal from 'react-universal-component'
 import universalImport from 'babel-plugin-universal-import/universalImport.js'
 import importCss from 'babel-plugin-universal-import/importCss.js'
 import path from 'path'
@@ -69,10 +71,12 @@ universal(universalImport({
 And if you're using dynamic imports:
 
 ```js
+import universal from 'react-universal-component'
 universal(({ page }) => import(`../async/${page}`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+import universal from 'react-universal-component'
 import universalImport from 'babel-plugin-universal-import/universalImport.js'
 import importCss from 'babel-plugin-universal-import/importCss.js'
 import path from 'path'
@@ -86,6 +90,7 @@ universal(({ page }) => universalImport({
   file: 'parentFile.js',
 }));
 ```
+> NOTE: if you aren't using `react-universal-component` and you just want to serve CSS chunks from [extract-css-chunks-webpack-plugin](https://www.npmjs.com/package/extract-css-chunks-webpack-plugin), use [babel-plugin-dual-import]([babel-plugin-universal-import](https://github.com/faceyspacey/babel-plugin-universal-import) instead.
 
 It names all your chunks using *magic comments* 🔮 behind the scenes and is derived from the imported file. This works with both static and dynamic import paths, as you can see above.
 
@@ -93,7 +98,7 @@ Otherwise, what it's doing is providing all the different types of requires/path
 
 The targeted **use-case** for all this is dynamic imports where you can pass a `page` prop to the resulting component, thereby allowing you to create one `<UniversalComponent page={page} />` for a large number your components. This is a major upgrade to the previous way of having to make a hash of a million async components in a wrapping component. You no longer have to think about *Universal Components* as anything different than your other components that use simple HoCs.
 
-Perhaps the coolest part however is that it also attempts to import a separate CSS file along with js chunks for optimum chunk sizes, caching and performance. Look in what `Promise.all` does. 
+Perhaps the coolest part however is that it also attempts to import a separate CSS file along with js chunks for optimum chunk sizes, caching and performance. Look in what `Promise.all` does. To fulfill this mission you must be using [extract-css-chunks-webpack-plugin](https://www.npmjs.com/package/extract-css-chunks-webpack-plugin) to create multiple CSS chunks for dynamic imports.
 
 And maybe even *cooler* to some: you don't have to do `universal(() => import())`. I.e. you don't have to wrap it in a function any longer when using `react-universal-component`, similar to `dynamic(import())` in Next.js...*unless of course you're making use of the awesome props feature, as showcased via the `page` prop.*
 
