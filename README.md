@@ -125,3 +125,6 @@ Below is a screenshot of this module's tests running in [Wallaby](https://wallab
 
 ![babel-plugin-universal-import screenshot](./screenshot.png)
 
+## More from FaceySpacey in Reactlandia
+- [redux-first-router](https://github.com/faceyspacey/redux-first-router). It's made to work perfectly with *Universal*. Together they comprise our *"frameworkless"* Redux-based approach to what Next.js does (splitting, SSR, prefetching, routing).
+
