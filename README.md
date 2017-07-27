@@ -1,4 +1,8 @@
-# babel-plugin-universal-import [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/faceyspacey/Lobby)
+<a href="https://gitter.im/Reactlandia/Lobby" target="_blank">
+  <img alt="Edit Redux-First Router Demo" src="http://cdn.reactlandia.com/chat-badge-reactlandia.png">
+</a>
+
+# babel-plugin-universal-import
 
 <p align="center">
   <a href="https://www.npmjs.com/package/babel-plugin-universal-import">
@@ -31,6 +35,10 @@
 </p>
 
 
+<p align="center">
+  <img src="./universal-graphic.png" />
+</p>
+
 ## Installation
 ```
 yarn add babel-plugin-universal-import
@@ -38,7 +46,6 @@ yarn add babel-plugin-universal-import
 *.babelrc:*
 ```js
 {
-  "presets": [whatever you usually have],
   "plugins": ["universal-import"]
 }
 ```
@@ -67,7 +74,7 @@ const UniversalComponent = universal(universalImport({
   load: () => Promise.all([
     import( /* webpackChunkName: 'Foo' */ './Foo.js'),
     importCss('Foo')
-  ])
+  ]).then(proms => proms[0])
 }))
 
 <UniversalComponent />
@@ -95,7 +102,7 @@ const UniversalComponent = universal(props => universalImport({
   load: props => Promise.all([
     import( /* webpackChunkName: '[request]' */ `./${props.page}`),
     importCss(page)
-  ])
+  ]).then(proms => proms[0])
 }));
 
 <UniversalComponent page='Foo' />
