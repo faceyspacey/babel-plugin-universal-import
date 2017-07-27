@@ -124,6 +124,15 @@ And maybe even *cooler* to some: you don't have to do `universal(() => import())
 
 If your compiling the server with Babel, you may need to add this babel-plugin as well: [babel-plugin-dynamic-import-webpack](https://github.com/airbnb/babel-plugin-dynamic-import-webpack). And if you're using a version of Webpack before 2.2.0, you also must add it.
 
+## Next Steps
+
+Checkout the rest of the packages in the *"Universal"* family:
+- [webpack-flush-chunks](https://github.com/faceyspacey/rwebpack-flush-chunks)
+- [react-universal-component](https://github.com/faceyspacey/react-universal-component)
+- [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin)
+
+*We realize things are bit confusing right now because of the shear number of packages. The next release is called `universal-render` and will bring everything under one roof, while adding a few final tricks. You heard it here first.*
+
 ## Caveat
 
 Lastly, to the discerning eye, you may be wondering if the return of `import()` is still *thenable*?? It is! However, if you don't call `.then` on it, somewhere (perhaps in the components like *react-universal-component* that you pass it to), then it won't perform the import. Since most of us are using modules, which we need to do something with in the `then` callback, that's not a problem. But if you happen to be importing a module that does its own setup, such as attaches something to the `window` object, well then you just need to call `.then()` to trigger it. That's a rare case these days, which is why we decided to go with the simplicity seen here. And yes, async await works too.
