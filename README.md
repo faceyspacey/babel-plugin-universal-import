@@ -49,7 +49,9 @@ Taking from the [test snapshots](./__tests__/__snapshots__/index.js.snap), it do
 
 ```js
 import universal from 'react-universal-component'
-universal(import('./Foo.js'))
+const UniversalComponent = universal(import('./Foo.js'))
+
+<UniversalComponent />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -58,21 +60,26 @@ import universalImport from 'babel-plugin-universal-import/universalImport.js'
 import importCss from 'babel-plugin-universal-import/importCss.js'
 import path from 'path'
 
-universal(universalImport({
+const UniversalComponent = universal(universalImport({
   chunkName: () => 'Foo',
   path: () => path.join(__dirname, './Foo.js'),
   resolve: () => require.resolveWeak('./Foo.js'),
-  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */ './Foo.js'), importCss('Foo')]),
-  id: './Foo.js',
-  file: 'parentFile.js',
+  load: () => Promise.all([
+    import( /* webpackChunkName: 'Foo' */ './Foo.js'),
+    importCss('Foo')
+  ])
 }))
+
+<UniversalComponent />
 ```
 
 And if you're using dynamic imports:
 
 ```js
 import universal from 'react-universal-component'
-universal(({ page }) => import(`../async/${page}`))
+const UniversalComponent = universal(props => import(`./${props.page}`))
+
+<UniversalComponent page='Foo' />
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -81,14 +88,17 @@ import universalImport from 'babel-plugin-universal-import/universalImport.js'
 import importCss from 'babel-plugin-universal-import/importCss.js'
 import path from 'path'
 
-universal(({ page }) => universalImport({
-  chunkName: () => `async/${page}`,
-  path: () => path.join(__dirname, `../async/${page}`),
-  resolve: () => require.resolveWeak(`../async/${page}`),
-  load: () => Promise.all([import( /* webpackChunkName: 'async/[request]' */ `../async/${page}`), importCss(`async/${page}`)]),
-  id: '../async/${page}',
-  file: 'parentFile.js',
+const UniversalComponent = universal(props => universalImport({
+  chunkName: props => props.page,
+  path: props => path.join(__dirname, `./${props.page}`),
+  resolve: props => require.resolveWeak(`./${props.page}`),
+  load: props => Promise.all([
+    import( /* webpackChunkName: '[request]' */ `./${props.page}`),
+    importCss(page)
+  ])
 }));
+
+<UniversalComponent page='Foo' />
 ```
 > NOTE: if you aren't using `react-universal-component` and you just want to serve CSS chunks from [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin), use [babel-plugin-dual-import](https://github.com/faceyspacey/babel-plugin-universal-import) instead.
 
@@ -96,11 +106,11 @@ It names all your chunks using *magic comments* 🔮 behind the scenes and is de
 
 Otherwise, what it's doing is providing all the different types of requires/paths/imports/etc needed by tools like [react-universal-component](https://github.com/faceyspacey/react-universal-component) to universally render your component.
 
-The targeted **use-case** for all this is dynamic imports where you can pass a `page` prop to the resulting component, thereby allowing you to create one `<UniversalComponent page={page} />` for a large number your components. This is a major upgrade to the previous way of having to make a hash of a million async components in a wrapping component. You no longer have to think about *Universal Components* as anything different than your other components that use simple HoCs.
+The targeted **use-case** for all this is dynamic imports where you can pass a `page` prop to the resulting component, thereby allowing you to create one `<UniversalComponent page={page} />` for a large number of your components. This is a major upgrade to the previous way of having to make a hash of a million async components in a wrapping component. You no longer have to think about *Universal Components* as anything different than your other components that use simple HoCs.
 
-Perhaps the coolest part however is that it also attempts to import a separate CSS file along with js chunks for optimum chunk sizes, caching and performance. Look in what `Promise.all` does. To fulfill this mission you must be using [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) to create multiple CSS chunks for dynamic imports.
+Perhaps the most powerful part however is that it also attempts to import a separate CSS file along with js chunks for optimum chunk sizes, caching and performance. Look in what `Promise.all` does. To fulfill this mission you must be using [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin) to create multiple CSS chunks for dynamic imports.
 
-And maybe even *cooler* to some: you don't have to do `universal(() => import())`. I.e. you don't have to wrap it in a function any longer when using `react-universal-component`, similar to `dynamic(import())` in Next.js...*unless of course you're making use of the awesome props feature, as showcased via the `page` prop.*
+And maybe even *cooler* to some: you don't have to do `universal(() => import())`. I.e. you don't have to wrap it in a function any longer when using `react-universal-component`, similar to `dynamic(import())` in Next.js...*unless of course you're making use of the extremely useful `props` argument.*
 
 
 ## Babel Server Or Webpack < 2.2.20
