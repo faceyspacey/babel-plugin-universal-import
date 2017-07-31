@@ -1,5 +1,5 @@
 <a href="https://gitter.im/Reactlandia/Lobby" target="_blank">
-  <img alt="Edit Redux-First Router Demo" src="http://cdn.reactlandia.com/chat-badge-reactlandia.png">
+  <img alt="Reactlandia Chat" src="https://s3-us-west-1.amazonaws.com/cdn.reactlandia.com/reactlandia-chat.png">
 </a>
 
 # babel-plugin-universal-import
@@ -36,7 +36,7 @@
 
 
 <p align="center">
-  <img src="./universal-graphic.png" />
+  <img src="https://s3-us-west-1.amazonaws.com/cdn.reactlandia.com/universal-component-banner.png" />
 </p>
 
 ## Installation
