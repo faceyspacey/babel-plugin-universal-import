@@ -6,7 +6,7 @@ module.exports = function(chunkName) {
     if (process.env.NODE_ENV === 'development') {
       if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) {
         console.warn(
-          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__". Make sure you are using: https://www.npmjs.com/package/extract-css-chunks-webpack-plugin .'
+          '[UNIVERSAL-IMPORT] no css chunks hash found at "window.__CSS_CHUNKS__". Make sure you are using: https://www.npmjs.com/package/extract-css-chunks-webpack-plugin . If you are not serving CSS, disregard this message.'
         )
         return
       }
@@ -14,7 +14,7 @@ module.exports = function(chunkName) {
       console.warn(
         '[UNIVERSAL-IMPORT] no chunk, ',
         chunkName,
-        ', found in "window.__CSS_CHUNKS__"'
+        ', found in "window.__CSS_CHUNKS__". If you are not serving CSS for this chunk, disregard this message.'
       )
     }
 
@@ -36,7 +36,7 @@ module.exports = function(chunkName) {
     link.onerror = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
-      var message = 'could not load css chunk:${chunkName}'
+      var message = 'could not load css chunk:' + chunkName
       reject(new Error(message))
     }
 
