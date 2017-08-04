@@ -36,7 +36,7 @@ module.exports = function(chunkName) {
     link.onerror = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
-      var message = 'could not load css chunk:' + chunkName
+      var message = 'could not load css chunk: ' + chunkName
       reject(new Error(message))
     }
 
