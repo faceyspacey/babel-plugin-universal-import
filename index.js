@@ -170,14 +170,24 @@ module.exports = function ({ types: t, template }) {
           return p.parentPath.replaceWith(func)
         }
 
-        const options = t.objectExpression([
-          idOption(importArgNode),
-          fileOption(p),
-          loadOption(p, importArgNode),
-          pathOption(p, importArgNode),
-          resolveOption(importArgNode),
-          chunkNameOption(importArgNode)
-        ])
+        const opts = this.opts.babelServer
+          ? [
+            idOption(importArgNode),
+            fileOption(p),
+            pathOption(p, importArgNode),
+            resolveOption(importArgNode),
+            chunkNameOption(importArgNode)
+          ]
+          : [
+            idOption(importArgNode),
+            fileOption(p),
+            loadOption(p, importArgNode), // only when not on a babel-server
+            pathOption(p, importArgNode),
+            resolveOption(importArgNode),
+            chunkNameOption(importArgNode)
+          ]
+
+        const options = t.objectExpression(opts)
 
         const func = t.callExpression(universalImport, [options])
         p.parentPath.replaceWith(func)

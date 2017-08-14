@@ -122,7 +122,17 @@ And maybe even *cooler* to some: you don't have to do `universal(() => import())
 
 ## Babel Server Or Webpack < 2.2.20
 
-If your compiling the server with Babel, you may need to add this babel-plugin as well: [babel-plugin-dynamic-import-webpack](https://github.com/airbnb/babel-plugin-dynamic-import-webpack). And if you're using a version of Webpack before 2.2.0, you also must add it.
+If your compiling the server with Babel, set the following option so `import()` does not exist in the final compilation result server-side:
+
+```js
+{
+  "plugins": [
+    ["universal-import", {
+      "babelServer": true
+    }]
+  ]
+}
+```
 
 ## Next Steps
 

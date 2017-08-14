@@ -29,14 +29,19 @@ pluginTester({
     'dynamic import (string template + relative paths)':
       'import(`../../base/${page}`)',
     'await import() should receive a thennable without calling .then':
-      'async ({ page }) => await import(`../components/${page}`);'
+      'async ({ page }) => await import(`../components/${page}`);',
+    'babelServer: true': {
+      code: 'import("./Foo")',
+      pluginOptions: { babelServer: true }
+    }
   }
 })
 
 // toggle from test.skip to test.only when working on the plugin using Wallaby
 test.skip('wallaby-live-coding', () => {
-  const input = 'async ({ page }) => await import(`../components/${page}`);'
+  // const input = 'async ({ page }) => await import(`../components/${page}`);'
   // const input = 'import("../../Foo.js")'
+  const input = 'universal(props => import(`./footer/${props.experiment}`));'
 
   const output = babel.transform(input, {
     filename: 'currentFile.js',

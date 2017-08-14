@@ -171,3 +171,21 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 async ({ page }) => await _universalImport(() => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`)]).then(proms => proms[0]), false);
 "
 `;
+
+exports[`10. babelServer: true 1`] = `
+"
+import(\\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo\\",
+  file: \\"currentFile.js\\",
+  path: () => _path.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
