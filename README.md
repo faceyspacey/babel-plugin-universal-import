@@ -137,7 +137,7 @@ If your compiling the server with Babel, set the following option so `import()` 
 ## Next Steps
 
 Checkout the rest of the packages in the *"Universal"* family:
-- [webpack-flush-chunks](https://github.com/faceyspacey/rwebpack-flush-chunks)
+- [webpack-flush-chunks](https://github.com/faceyspacey/webpack-flush-chunks)
 - [react-universal-component](https://github.com/faceyspacey/react-universal-component)
 - [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin)
 
