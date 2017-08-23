@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+var ADDED = {};
+
 module.exports = function(chunkName) {
   var href = getHref(chunkName)
   if (!href) {
@@ -21,6 +23,11 @@ module.exports = function(chunkName) {
     return
   }
 
+  if (ADDED[href] === true) {
+    return Promise.resolve();
+  }
+  ADDED[href] = true;
+  
   var head = document.getElementsByTagName('head')[0]
   var link = document.createElement('link')
 
