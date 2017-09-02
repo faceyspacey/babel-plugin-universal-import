@@ -1,5 +1,7 @@
 'use-strict'
 
+const path = require('path')
+
 module.exports = function ({ types: t, template }) {
   const visited = Symbol('visited')
   const universalImportId = Symbol('universalImportId')
@@ -106,9 +108,14 @@ module.exports = function ({ types: t, template }) {
     )
   }
 
-  function loadOption(p, importArgNode) {
+  function loadOption(p, importArgNode, flatten) {
     const argPath = getImportArgPath(p)
-    const chunkName = getMagicCommentChunkName(importArgNode)
+    let chunkName = getMagicCommentChunkName(importArgNode)
+
+    if (flatten) {
+      const replaceBy = flatten === true ? '-' : flatten
+      chunkName = chunkName.replace(new RegExp(path.sep, 'g'), replaceBy)
+    }
 
     delete argPath.node.leadingComments
     argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
@@ -181,7 +188,7 @@ module.exports = function ({ types: t, template }) {
           : [
             idOption(importArgNode),
             fileOption(p),
-            loadOption(p, importArgNode), // only when not on a babel-server
+            loadOption(p, importArgNode, this.opts.flatten), // only when not on a babel-server
             pathOption(p, importArgNode),
             resolveOption(importArgNode),
             chunkNameOption(importArgNode)

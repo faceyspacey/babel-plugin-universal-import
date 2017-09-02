@@ -189,3 +189,43 @@ _universalImport({
 });
 "
 `;
+
+exports[`11. flatten: true 1`] = `
+"
+import(\\"./Foo/Bar/Baz\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo/Bar/Baz\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo-Bar-Baz' */\\"./Foo/Bar/Baz\\"), _importCss(\\"Foo/Bar/Baz\\")]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"./Foo/Bar/Baz\\"),
+  resolve: () => require.resolveWeak(\\"./Foo/Bar/Baz\\"),
+  chunkName: () => \\"Foo/Bar/Baz\\"
+});
+"
+`;
+
+exports[`12. flatten: # 1`] = `
+"
+import(\\"./Foo/Bar/Baz\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo/Bar/Baz\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo#Bar#Baz' */\\"./Foo/Bar/Baz\\"), _importCss(\\"Foo/Bar/Baz\\")]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"./Foo/Bar/Baz\\"),
+  resolve: () => require.resolveWeak(\\"./Foo/Bar/Baz\\"),
+  chunkName: () => \\"Foo/Bar/Baz\\"
+});
+"
+`;

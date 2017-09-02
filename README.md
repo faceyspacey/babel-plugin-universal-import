@@ -134,6 +134,22 @@ If your compiling the server with Babel, set the following option so `import()` 
 }
 ```
 
+## Flatten chanknames
+
+If having a flat build directory is needed, you can set the `flatten` option which can be `true` which will replace the file separator with `-` or you can pass another character:
+
+```js
+{
+  "plugins": [
+    ["universal-import", {
+      "flatten": true
+      // or
+      "flatten": '#'
+    }]
+  ]
+}
+```
+
 ## Next Steps
 
 Checkout the rest of the packages in the *"Universal"* family:
