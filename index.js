@@ -1,5 +1,7 @@
 'use-strict'
 
+const JSON5 = require('json5')
+
 module.exports = function ({ types: t, template }) {
   const visited = Symbol('visited')
   const universalImportId = Symbol('universalImportId')
@@ -56,6 +58,19 @@ module.exports = function ({ types: t, template }) {
     return p.hub.file[pathId]
   }
 
+  function existingMagicCommentChunkName(importArgNode) {
+    const { leadingComments } = importArgNode
+    if (
+      leadingComments &&
+      leadingComments.length &&
+      leadingComments[0].value.indexOf('webpackChunkName') !== -1
+    ) {
+      const parsedComment = JSON5.parse(`{${leadingComments[0].value}}`)
+      return parsedComment.webpackChunkName
+    }
+    return null
+  }
+
   function createTrimmedChunkName(importArgNode) {
     if (importArgNode.quasis) {
       const quasis = importArgNode.quasis.slice(0)
@@ -106,9 +121,10 @@ module.exports = function ({ types: t, template }) {
     )
   }
 
-  function loadOption(p, importArgNode) {
+  function loadOption(p, importArgNode, existingChunkName) {
     const argPath = getImportArgPath(p)
-    const chunkName = getMagicCommentChunkName(importArgNode)
+    const chunkName =
+      existingChunkName || getMagicCommentChunkName(importArgNode)
 
     delete argPath.node.leadingComments
     argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
@@ -139,9 +155,11 @@ module.exports = function ({ types: t, template }) {
     return t.objectProperty(t.identifier('resolve'), resolve)
   }
 
-  function chunkNameOption(importArgNode) {
+  function chunkNameOption(importArgNode, existingChunkName) {
     const chunkName = chunkNameTemplate({
-      MODULE: createTrimmedChunkName(importArgNode)
+      MODULE: existingChunkName
+        ? t.stringLiteral(existingChunkName)
+        : createTrimmedChunkName(importArgNode)
     }).expression
 
     return t.objectProperty(t.identifier('chunkName'), chunkName)
@@ -156,6 +174,7 @@ module.exports = function ({ types: t, template }) {
 
         const importArgNode = getImportArgPath(p).node
         const universalImport = getUniversalImport(p)
+        const existingChunkName = existingMagicCommentChunkName(importArgNode)
 
         // if being used in an await statement, return load() promise
         if (
@@ -163,7 +182,7 @@ module.exports = function ({ types: t, template }) {
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(p, importArgNode).value,
+            loadOption(p, importArgNode, existingChunkName).value,
             t.booleanLiteral(false)
           ])
 
@@ -176,15 +195,15 @@ module.exports = function ({ types: t, template }) {
             fileOption(p),
             pathOption(p, importArgNode),
             resolveOption(importArgNode),
-            chunkNameOption(importArgNode)
+            chunkNameOption(importArgNode, existingChunkName)
           ]
           : [
             idOption(importArgNode),
             fileOption(p),
-            loadOption(p, importArgNode), // only when not on a babel-server
+            loadOption(p, importArgNode, existingChunkName), // only when not on a babel-server
             pathOption(p, importArgNode),
             resolveOption(importArgNode),
-            chunkNameOption(importArgNode)
+            chunkNameOption(importArgNode, existingChunkName)
           ]
 
         const options = t.objectExpression(opts)
