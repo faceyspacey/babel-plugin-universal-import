@@ -59,5 +59,7 @@
       "git add"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "json5": "^0.5.1"
+  }
 }

@@ -21,9 +21,13 @@ pluginTester({
     'static import': 'import("./Foo")',
     'static import (with relative paths)': 'import("../../Foo")',
     'static import (with file extension)': 'import("./Foo.js")',
+    'static import (with magic comment)':
+      'import(/* webpackChunkName: "notfoo" */ "./Foo")',
     'static import (string template)': 'import(`./base`)',
     'static import (string template + relative paths)': 'import(`../../base`)',
     'dynamic import (string template)': 'import(`./base/${page}`)',
+    'dynamic import (with magic comment)':
+      'import(/* webpackChunkName: "notfoo" */ `./base/${page}`)',
     'dynamic import (string template - dynamic at 1st segment)':
       'import(`./${page}`)',
     'dynamic import (string template + relative paths)':
