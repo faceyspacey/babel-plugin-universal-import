@@ -21,6 +21,10 @@ module.exports = function ({ types: t, template }) {
     return baseDir.replace(/^[./]+|(\.js$)/g, '')
   }
 
+  function prepareChunkNamePath(path) {
+    return path.replace(/\//g, '-')
+  }
+
   function getUniversalImport(p) {
     if (!p.hub.file[universalImportId]) {
       const universal = p.hub.file.addImport(
@@ -63,6 +67,12 @@ module.exports = function ({ types: t, template }) {
       quasis[0] = Object.assign({}, quasis[0], {
         value: { raw: baseDir, cooked: baseDir }
       })
+      if (quasis[1]) {
+        const newPath = prepareChunkNamePath(quasis[1].value.cooked)
+        quasis[1] = Object.assign({}, quasis[1], {
+          value: { raw: newPath, cooked: newPath }
+        })
+      }
 
       return Object.assign({}, importArgNode, {
         quasis

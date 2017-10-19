@@ -120,7 +120,27 @@ _universalImport({
 "
 `;
 
-exports[`7. dynamic import (string template - dynamic at 1st segment) 1`] = `
+exports[`7. dynamic import (string template with nested folder) 1`] = `
+"
+import(\`./base/\${page}/nested/folder\`)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./base/\${page}/nested/folder\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}/nested/folder\`), _importCss(\`base/\${page}-nested-folder\`)]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \`./base/\${page}/nested/folder\`),
+  resolve: () => require.resolveWeak(\`./base/\${page}/nested/folder\`),
+  chunkName: () => \`base/\${page}-nested-folder\`
+});
+"
+`;
+
+exports[`8. dynamic import (string template - dynamic at 1st segment) 1`] = `
 "
 import(\`./\${page}\`)
 
@@ -140,7 +160,7 @@ _universalImport({
 "
 `;
 
-exports[`8. dynamic import (string template + relative paths) 1`] = `
+exports[`9. dynamic import (string template + relative paths) 1`] = `
 "
 import(\`../../base/\${page}\`)
 
@@ -160,7 +180,7 @@ _universalImport({
 "
 `;
 
-exports[`9. await import() should receive a thennable without calling .then 1`] = `
+exports[`10. await import() should receive a thennable without calling .then 1`] = `
 "
 async ({ page }) => await import(\`../components/\${page}\`);
 
@@ -172,7 +192,7 @@ async ({ page }) => await _universalImport(() => Promise.all([import( /* webpack
 "
 `;
 
-exports[`10. babelServer: true 1`] = `
+exports[`11. babelServer: true 1`] = `
 "
 import(\\"./Foo\\")
 
