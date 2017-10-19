@@ -62,17 +62,13 @@ module.exports = function ({ types: t, template }) {
 
   function createTrimmedChunkName(importArgNode) {
     if (importArgNode.quasis) {
-      const quasis = importArgNode.quasis.slice(0)
+      let quasis = importArgNode.quasis.slice(0)
       const baseDir = trimChunkNameBaseDir(quasis[0].value.cooked)
       quasis[0] = Object.assign({}, quasis[0], {
         value: { raw: baseDir, cooked: baseDir }
       })
-      if (quasis[1]) {
-        const newPath = prepareChunkNamePath(quasis[1].value.cooked)
-        quasis[1] = Object.assign({}, quasis[1], {
-          value: { raw: newPath, cooked: newPath }
-        })
-      }
+
+      quasis = quasis.map((quasi, i) => (i > 0 ? prepareQuasi(quasi) : quasi))
 
       return Object.assign({}, importArgNode, {
         quasis
@@ -81,6 +77,14 @@ module.exports = function ({ types: t, template }) {
 
     const moduleName = trimChunkNameBaseDir(importArgNode.value)
     return t.stringLiteral(moduleName)
+  }
+
+  function prepareQuasi(quasi) {
+    const newPath = prepareChunkNamePath(quasi.value.cooked)
+
+    return Object.assign({}, quasi, {
+      value: { raw: newPath, cooked: newPath }
+    })
   }
 
   function getMagicCommentChunkName(importArgNode) {

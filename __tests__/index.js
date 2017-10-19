@@ -26,6 +26,8 @@ pluginTester({
     'dynamic import (string template)': 'import(`./base/${page}`)',
     'dynamic import (string template with nested folder)':
       'import(`./base/${page}/nested/folder`)',
+    'dynamic import (string template with multiple nested folders)':
+      'import(`./base/${page}/nested/{$another}folder`)',
     'dynamic import (string template - dynamic at 1st segment)':
       'import(`./${page}`)',
     'dynamic import (string template + relative paths)':
@@ -43,7 +45,8 @@ pluginTester({
 test.skip('wallaby-live-coding', () => {
   // const input = 'async ({ page }) => await import(`../components/${page}`);'
   // const input = 'import("../../Foo.js")'
-  const input = 'universal(props => import(`./footer/${props.experiment}`));'
+  // const input = 'universal(props => import(`./footer/${props.experiment}`));'
+  const input = 'import(`./base/${page}/index`)'
 
   const output = babel.transform(input, {
     filename: 'currentFile.js',
