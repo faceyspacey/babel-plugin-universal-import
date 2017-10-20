@@ -37,6 +37,14 @@ pluginTester({
     'babelServer: true': {
       code: 'import("./Foo")',
       pluginOptions: { babelServer: true }
+    },
+    'flatten: true': {
+      code: 'import("./Foo/Bar/Baz")',
+      pluginOptions: { flatten: true }
+    },
+    'flatten: #': {
+      code: 'import("./Foo/Bar/Baz")',
+      pluginOptions: { flatten: '#' }
     }
   }
 })
