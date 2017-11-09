@@ -12,7 +12,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./Foo\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo\\"), _importCss(\\"Foo\\")]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo\\"), _importCss(\\"Foo\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
@@ -32,7 +32,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"../../Foo\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"../../Foo\\"), _importCss(\\"Foo\\")]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"../../Foo\\"), _importCss(\\"Foo\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \\"../../Foo\\"),
   resolve: () => require.resolveWeak(\\"../../Foo\\"),
   chunkName: () => \\"Foo\\"
@@ -52,7 +52,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./Foo.js\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo.js\\"), _importCss(\\"Foo\\")]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo.js\\"), _importCss(\\"Foo\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \\"./Foo.js\\"),
   resolve: () => require.resolveWeak(\\"./Foo.js\\"),
   chunkName: () => \\"Foo\\"
@@ -72,7 +72,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./base\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`./base\`), _importCss(\`base\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`./base\`), _importCss(\`base\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`./base\`),
   resolve: () => require.resolveWeak(\`./base\`),
   chunkName: () => \`base\`
@@ -92,7 +92,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"../../base\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`../../base\`), _importCss(\`base\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base' */\`../../base\`), _importCss(\`base\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`../../base\`),
   resolve: () => require.resolveWeak(\`../../base\`),
   chunkName: () => \`base\`
@@ -112,7 +112,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./base/\${page}\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}\`), _importCss(\`base/\${page}\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}\`), _importCss(\`base/\${page}\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`./base/\${page}\`),
   resolve: () => require.resolveWeak(\`./base/\${page}\`),
   chunkName: () => \`base/\${page}\`
@@ -132,7 +132,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./base/\${page}/nested/folder\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}/nested/folder\`), _importCss(\`base/\${page}-nested-folder\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}/nested/folder\`), _importCss(\`base/\${page}-nested-folder\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`./base/\${page}/nested/folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/folder\`),
   chunkName: () => \`base/\${page}-nested-folder\`
@@ -152,7 +152,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./base/\${page}/nested/{$another}folder\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}/nested/{$another}folder\`), _importCss(\`base/\${page}-nested-{$another}folder\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`./base/\${page}/nested/{$another}folder\`), _importCss(\`base/\${page}-nested-{$another}folder\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/{$another}folder\`),
   chunkName: () => \`base/\${page}-nested-{$another}folder\`
@@ -172,7 +172,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"./\${page}\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: '[request]' */\`./\${page}\`), _importCss(\`\${page}\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: '[request]' */\`./\${page}\`), _importCss(\`\${page}\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`./\${page}\`),
   resolve: () => require.resolveWeak(\`./\${page}\`),
   chunkName: () => \`\${page}\`
@@ -192,7 +192,7 @@ import _universalImport from \\"babel-plugin-universal-import/universalImport.js
 _universalImport({
   id: \\"../../base/\${page}\\",
   file: \\"currentFile.js\\",
-  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`../../base/\${page}\`), _importCss(\`base/\${page}\`)]).then(proms => proms[0]),
+  load: () => Promise.all([import( /* webpackChunkName: 'base/[request]' */\`../../base/\${page}\`), _importCss(\`base/\${page}\`, {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`../../base/\${page}\`),
   resolve: () => require.resolveWeak(\`../../base/\${page}\`),
   chunkName: () => \`base/\${page}\`
@@ -208,7 +208,7 @@ async ({ page }) => await import(\`../components/\${page}\`);
 
 import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
 import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
-async ({ page }) => await _universalImport(() => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`)]).then(proms => proms[0]), false);
+async ({ page }) => await _universalImport(() => Promise.all([import( /* webpackChunkName: 'components/[request]' */\`../components/\${page}\`), _importCss(\`components/\${page}\`, {})]).then(proms => proms[0]), false);
 "
 `;
 
@@ -251,3 +251,4 @@ _universalImport({
 });
 "
 `;
+
