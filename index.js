@@ -10,7 +10,7 @@ module.exports = function ({ types: t, template }) {
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
   const loadTemplate = template(
-    '() => Promise.all([IMPORT, IMPORT_CSS(MODULE)]).then(proms => proms[0])'
+    '() => Promise.all([IMPORT, IMPORT_CSS(MODULE, CSS_OPTIONS)]).then(proms => proms[0])'
   )
 
   function getImportArgPath(p) {
@@ -120,17 +120,39 @@ module.exports = function ({ types: t, template }) {
     )
   }
 
-  function loadOption(p, importArgNode) {
+  function getCssOptionExpression(cssOptions) {
+    const opts = Object.keys(cssOptions).reduce((options, option) => {
+      const cssOption = cssOptions[option]
+      const optionType = typeof cssOption
+
+      if (optionType !== 'undefined') {
+        const optionProperty = t.objectProperty(
+          t.identifier(option),
+          t[`${optionType}Literal`](cssOption)
+        )
+
+        options.push(optionProperty)
+      }
+
+      return options
+    }, [])
+
+    return t.objectExpression(opts)
+  }
+
+  function loadOption(p, importArgNode, cssOptions) {
     const argPath = getImportArgPath(p)
     const chunkName = getMagicCommentChunkName(importArgNode)
 
     delete argPath.node.leadingComments
     argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
+    const cssOpts = getCssOptionExpression(cssOptions)
     const load = loadTemplate({
       IMPORT: argPath.parent,
       IMPORT_CSS: getImportCss(p),
-      MODULE: createTrimmedChunkName(importArgNode)
+      MODULE: createTrimmedChunkName(importArgNode),
+      CSS_OPTIONS: cssOpts
     }).expression
 
     return t.objectProperty(t.identifier('load'), load)
@@ -170,6 +192,9 @@ module.exports = function ({ types: t, template }) {
 
         const importArgNode = getImportArgPath(p).node
         const universalImport = getUniversalImport(p)
+        const cssOptions = {
+          disableWarnings: this.opts.disableWarnings
+        }
 
         // if being used in an await statement, return load() promise
         if (
@@ -177,7 +202,7 @@ module.exports = function ({ types: t, template }) {
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(p, importArgNode).value,
+            loadOption(p, importArgNode, cssOptions).value,
             t.booleanLiteral(false)
           ])
 
@@ -195,7 +220,7 @@ module.exports = function ({ types: t, template }) {
           : [
             idOption(importArgNode),
             fileOption(p),
-            loadOption(p, importArgNode), // only when not on a babel-server
+            loadOption(p, importArgNode, cssOptions), // only when not on a babel-server
             pathOption(p, importArgNode),
             resolveOption(importArgNode),
             chunkNameOption(importArgNode)
