@@ -229,3 +229,25 @@ _universalImport({
 });
 "
 `;
+
+exports[`13. disableWarnings: true 1`] = `
+"
+import(\\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _path from \\"path\\";
+import _importCss from \\"babel-plugin-universal-import/importCss.js\\";
+import _universalImport from \\"babel-plugin-universal-import/universalImport.js\\";
+_universalImport({
+  id: \\"./Foo\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import( /* webpackChunkName: 'Foo' */\\"./Foo\\"), _importCss(\\"Foo\\", {
+    disableWarnings: true
+  })]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;

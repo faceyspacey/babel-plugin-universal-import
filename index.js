@@ -120,7 +120,7 @@ module.exports = function ({ types: t, template }) {
     )
   }
 
-  function loadOption(p, importArgNode) {
+  function loadOption(p, importArgNode, disableWarnings) {
     const argPath = getImportArgPath(p)
     const chunkName = getMagicCommentChunkName(importArgNode)
 
@@ -132,6 +132,18 @@ module.exports = function ({ types: t, template }) {
       IMPORT_CSS: getImportCss(p),
       MODULE: createTrimmedChunkName(importArgNode)
     }).expression
+
+    if (disableWarnings) {
+      const cssProperties = [
+        t.objectProperty(
+          t.identifier('disableWarnings'),
+          t.booleanLiteral(true)
+        )
+      ]
+      const cssOpts = t.objectExpression(cssProperties)
+
+      load.body.callee.object.arguments[0].elements[1].arguments.push(cssOpts)
+    }
 
     return t.objectProperty(t.identifier('load'), load)
   }
@@ -170,6 +182,7 @@ module.exports = function ({ types: t, template }) {
 
         const importArgNode = getImportArgPath(p).node
         const universalImport = getUniversalImport(p)
+        const disableWarnings = this.opts.disableWarnings
 
         // if being used in an await statement, return load() promise
         if (
@@ -177,7 +190,7 @@ module.exports = function ({ types: t, template }) {
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(p, importArgNode).value,
+            loadOption(p, importArgNode, disableWarnings).value,
             t.booleanLiteral(false)
           ])
 
@@ -195,7 +208,7 @@ module.exports = function ({ types: t, template }) {
           : [
             idOption(importArgNode),
             fileOption(p),
-            loadOption(p, importArgNode), // only when not on a babel-server
+            loadOption(p, importArgNode, disableWarnings), // only when not on a babel-server
             pathOption(p, importArgNode),
             resolveOption(importArgNode),
             chunkNameOption(importArgNode)
