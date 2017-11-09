@@ -37,6 +37,10 @@ pluginTester({
     'babelServer: true': {
       code: 'import("./Foo")',
       pluginOptions: { babelServer: true }
+    },
+    'disableWarnings: true': {
+      code: 'import("./Foo")',
+      pluginOptions: { disableWarnings: true }
     }
   }
 })
