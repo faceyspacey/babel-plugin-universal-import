@@ -101,7 +101,7 @@ const UniversalComponent = universal(props => universalImport({
   resolve: props => require.resolveWeak(`./${props.page}`),
   load: props => Promise.all([
     import( /* webpackChunkName: '[request]' */ `./${props.page}`),
-    importCss(page)
+    importCss(props.page)
   ]).then(proms => proms[0])
 }));
 
@@ -129,7 +129,7 @@ import importCss from 'babel-plugin-universal-import/importCss.js'
 
 const load = props => Promise.all([
     import( /* webpackChunkName: '[request]' */ `./${props.page}`),
-    importCss(page)
+    importCss(props.page)
   ]).then(proms => proms[0])
 
 const UniversalComponent = universal(load, {
