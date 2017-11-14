@@ -119,6 +119,25 @@ Perhaps the most powerful part however is that it also attempts to import a sepa
 
 And maybe even *cooler* to some: you don't have to do `universal(() => import())`. I.e. you don't have to wrap it in a function any longer when using `react-universal-component`, similar to `dynamic(import())` in Next.js...*unless of course you're making use of the extremely useful `props` argument.*
 
+## Typescript and non-Babel environments
+
+If you can't use babel, you can either copy what this plugin does above, or you can do a shorter version where you just put the important configuration key/vals on the 2nd options argument to `universal`:
+
+```js
+import universal from 'react-universal-component'
+import importCss from 'babel-plugin-universal-import/importCss.js'
+
+const load = props => Promise.all([
+    import( /* webpackChunkName: '[request]' */ `./${props.page}`),
+    importCss(page)
+  ]).then(proms => proms[0])
+
+const UniversalComponent = universal(load, {
+  chunkName: props => props.page,
+  resolve: props => require.resolveWeak(`./${props.page}`)
+});
+```
+> notice `chunkName` and `resolve` as standard options on the 2nd options argument.
 
 ## Babel Server Or Webpack < 2.2.20
 
