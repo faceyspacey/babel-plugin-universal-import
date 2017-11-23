@@ -17,7 +17,7 @@
     "test": "jest",
     "lint": "eslint --fix ./",
     "format": "prettier --single-quote --parser=flow --semi=false --write '{src,__tests__,__test-helpers__}/**/*.js' && npm run lint",
-    "precommit": "lint-staged --verbose && npm test",
+    "precommit": "lint-staged && npm test",
     "cm": "git-cz",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
@@ -55,11 +55,14 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --single-quote --parser=flow --semi=false --write",
-      "eslint --fix",
-      "git add"
-    ]
+    "linters": {
+      "*.js": [
+        "prettier --single-quote --parser=flow --semi=false --write",
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "verbose": true
   },
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0-beta.32"
