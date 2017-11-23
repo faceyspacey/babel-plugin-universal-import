@@ -22,7 +22,7 @@ import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
 
@@ -44,7 +44,7 @@ import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -71,7 +71,7 @@ import(\`../../base/\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -96,7 +96,7 @@ import(\`./\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -121,7 +121,7 @@ import(\`./base/\${page}/nested/{$another}folder\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -146,7 +146,7 @@ import(\`./base/\${page}/nested/folder\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -171,7 +171,7 @@ import(\`./base/\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -196,7 +196,7 @@ import(\`../../base\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -221,7 +221,7 @@ import(\`./base\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -246,7 +246,7 @@ import(\\"./Foo.js\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -271,7 +271,7 @@ import(\\"../../Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
@@ -296,7 +296,7 @@ import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _path from \\"path\\";
+var _path = _interopRequireDefault(require(\\"path\\")).default;
 
 var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
 
