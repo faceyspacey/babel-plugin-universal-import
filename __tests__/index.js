@@ -1,10 +1,12 @@
+/* eslint-disable no-template-curly-in-string */
+
 const pluginTester = require('babel-plugin-tester')
 const createBabylonOptions = require('babylon-options')
 const plugin = require('../index')
-const babel = require('babel-core')
-const dynamicSyntax = require('babel-plugin-syntax-dynamic-import')
-const stage2 = require('babel-preset-stage-2')
-const es2015 = require('babel-preset-es2015')
+const babel = require('@babel/core')
+const dynamicSyntax = require('@babel/plugin-syntax-dynamic-import')
+const stage2 = require('@babel/preset-stage-2')
+const es2015 = require('@babel/preset-es2015')
 
 const babelOptions = {
   filename: 'currentFile.js',
@@ -58,5 +60,5 @@ test.skip('wallaby-live-coding', () => {
     presets: [es2015, stage2]
   })
 
-  output.code /*? */
+  expect(output.code).toBeDefined()
 })

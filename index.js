@@ -1,6 +1,8 @@
 'use-strict'
 
-module.exports = function ({ types: t, template }) {
+const { addDefault } = require('@babel/helper-module-imports')
+
+module.exports = function universalImportPlugin({ types: t, template }) {
   const visited = Symbol('visited')
   const universalImportId = Symbol('universalImportId')
   const importCssId = Symbol('importCssId')
@@ -27,10 +29,10 @@ module.exports = function ({ types: t, template }) {
 
   function getUniversalImport(p) {
     if (!p.hub.file[universalImportId]) {
-      const universal = p.hub.file.addImport(
-        'babel-plugin-universal-import/universalImport.js',
-        'default',
-        'universalImport'
+      const universal = addDefault(
+        p,
+        'babel-plugin-universal-import/universalImport',
+        { nameHint: 'universalImport' }
       )
       p.hub.file[universalImportId] = universal
     }
@@ -40,10 +42,10 @@ module.exports = function ({ types: t, template }) {
 
   function getImportCss(p) {
     if (!p.hub.file[importCssId]) {
-      const importCss = p.hub.file.addImport(
-        'babel-plugin-universal-import/importCss.js',
-        'default',
-        'importCss'
+      const importCss = addDefault(
+        p,
+        'babel-plugin-universal-import/importCss',
+        { nameHint: 'importCss' }
       )
       p.hub.file[importCssId] = importCss
     }
@@ -104,7 +106,8 @@ module.exports = function ({ types: t, template }) {
     return quasis.reduce((str, quasi, i) => {
       const q = quasi.value.cooked
       const id = expressions[i] && expressions[i].name
-      return (str += id ? `${q}\${${id}}` : q)
+      str += id ? `${q}\${${id}}` : q
+      return str
     }, '')
   }
 
@@ -206,6 +209,7 @@ module.exports = function ({ types: t, template }) {
             t.booleanLiteral(false)
           ])
 
+          // eslint-disable-next-line consistent-return
           return p.parentPath.replaceWith(func)
         }
 
@@ -234,4 +238,3 @@ module.exports = function ({ types: t, template }) {
     }
   }
 }
-
