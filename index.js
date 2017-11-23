@@ -3,9 +3,8 @@
 const { addDefault } = require('@babel/helper-module-imports')
 
 const visited = Symbol('visited')
-const pathId = Symbol('pathId')
 
-const UNIVERSAL_IMPORT_DEFAULT = {
+const IMPORT_UNIVERSAL_DEFAULT = {
   id: Symbol('universalImportId'),
   source: 'babel-plugin-universal-import/universalImport',
   nameHint: 'universalImport'
@@ -15,6 +14,12 @@ const IMPORT_CSS_DEFAULT = {
   id: Symbol('importCssId'),
   source: 'babel-plugin-universal-import/importCss',
   nameHint: 'importCss'
+}
+
+const IMPORT_PATH_DEFAULT = {
+  id: Symbol('pathId'),
+  source: 'path',
+  nameHint: 'path'
 }
 
 function getImportArgPath(p) {
@@ -35,15 +40,6 @@ function getImport(p, { id, source, nameHint }) {
   }
 
   return p.hub.file[id]
-}
-
-function getPath(p) {
-  if (!p.hub.file[pathId]) {
-    const path = p.hub.file.addImport('path', 'default', 'path')
-    p.hub.file[pathId] = path
-  }
-
-  return p.hub.file[pathId]
 }
 
 function createTrimmedChunkName(t, importArgNode) {
@@ -147,7 +143,7 @@ function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
 
 function pathOption(t, pathTemplate, p, importArgNode) {
   const path = pathTemplate({
-    PATH: getPath(p),
+    PATH: getImport(p, IMPORT_PATH_DEFAULT),
     MODULE: importArgNode
   }).expression
 
@@ -186,7 +182,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         p[visited] = true
 
         const importArgNode = getImportArgPath(p).node
-        const universalImport = getImport(p, UNIVERSAL_IMPORT_DEFAULT)
+        const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
         const cssOptions = {
           disableWarnings: this.opts.disableWarnings
         }
