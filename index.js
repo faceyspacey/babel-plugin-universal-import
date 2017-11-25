@@ -197,8 +197,8 @@ module.exports = function universalImportPlugin({ types: t, template }) {
             t.booleanLiteral(false)
           ])
 
-          // eslint-disable-next-line consistent-return
-          return p.parentPath.replaceWith(func)
+          p.parentPath.replaceWith(func)
+          return
         }
 
         const opts = this.opts.babelServer
