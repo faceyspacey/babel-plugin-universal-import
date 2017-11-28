@@ -19,6 +19,7 @@ module.exports = wallaby => {
       '**/*.js': wallaby.compilers.babel({ babelrc: true })
     },
     setup(wallaby) {
+      // eslint-disable-next-line global-require
       const conf = require('./package.json').jest
       wallaby.testFramework.configure(conf)
     }
