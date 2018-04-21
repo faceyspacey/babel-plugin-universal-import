@@ -43,7 +43,8 @@ pluginTester({
     'disableWarnings: true': {
       code: 'import("./Foo")',
       pluginOptions: { disableWarnings: true }
-    }
+    },
+    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")'
   }
 })
 

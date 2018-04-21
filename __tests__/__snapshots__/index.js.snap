@@ -206,6 +206,33 @@ _universalImport({
 "
 `;
 
+exports[`existing chunkName 1`] = `
+"
+import(/* webpackChunkName: 'Bar' */\\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path = _interopRequireDefault(require(\\"path\\")).default;
+
+var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
+
+var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_universalImport({
+  id: \\"./Foo\\",
+  file: \\"currentFile.js\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\"), _importCss(\\"Bar\\", {})]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
 exports[`static import (string template + relative paths) 1`] = `
 "
 import(\`../../base\`)
