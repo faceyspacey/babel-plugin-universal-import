@@ -91,6 +91,26 @@ function getComponentId(t, importArgNode) {
   }, '')
 }
 
+function existingMagicCommentChunkName(importArgNode) {
+  const { leadingComments } = importArgNode
+  if (
+    leadingComments &&
+    leadingComments.length &&
+    leadingComments[0].value.indexOf('webpackChunkName') !== -1
+  ) {
+    try {
+      return leadingComments[0].value
+        .split('webpackChunkName:')[1]
+        .replace(/["']/g, '')
+        .trim()
+    }
+    catch (e) {
+      return null
+    }
+  }
+  return null
+}
+
 function idOption(t, importArgNode) {
   const id = getComponentId(t, importArgNode)
   return t.objectProperty(t.identifier('id'), t.stringLiteral(id))
@@ -125,7 +145,12 @@ function getCssOptionExpression(t, cssOptions) {
 
 function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
   const argPath = getImportArgPath(p)
-  const chunkName = getMagicCommentChunkName(importArgNode)
+  const generatedChunkName = getMagicCommentChunkName(importArgNode)
+  const existingChunkName = t.existingChunkName
+  const chunkName = existingChunkName || generatedChunkName
+  const trimmedChunkName = existingChunkName
+    ? t.stringLiteral(existingChunkName)
+    : createTrimmedChunkName(t, importArgNode)
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
@@ -134,7 +159,7 @@ function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
   const load = loadTemplate({
     IMPORT: argPath.parent,
     IMPORT_CSS: getImport(p, IMPORT_CSS_DEFAULT),
-    MODULE: createTrimmedChunkName(t, importArgNode),
+    MODULE: trimmedChunkName,
     CSS_OPTIONS: cssOpts
   }).expression
 
@@ -159,8 +184,14 @@ function resolveOption(t, resolveTemplate, importArgNode) {
 }
 
 function chunkNameOption(t, chunkNameTemplate, importArgNode) {
+  const existingChunkName = t.existingChunkName
+  const generatedChunk = createTrimmedChunkName(t, importArgNode)
+  const trimmedChunkName = existingChunkName
+    ? t.stringLiteral(existingChunkName)
+    : generatedChunk
+
   const chunkName = chunkNameTemplate({
-    MODULE: createTrimmedChunkName(t, importArgNode)
+    MODULE: trimmedChunkName
   }).expression
 
   return t.objectProperty(t.identifier('chunkName'), chunkName)
@@ -182,7 +213,9 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         p[visited] = true
 
         const importArgNode = getImportArgPath(p).node
+        t.existingChunkName = existingMagicCommentChunkName(importArgNode)
         const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
+
         const cssOptions = {
           disableWarnings: this.opts.disableWarnings
         }
@@ -221,6 +254,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         const options = t.objectExpression(opts)
 
         const func = t.callExpression(universalImport, [options])
+        delete t.existingChunkName
         p.parentPath.replaceWith(func)
       }
     }
