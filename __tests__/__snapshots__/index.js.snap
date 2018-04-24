@@ -224,7 +224,7 @@ _universalImport({
   id: \\"./Foo\\",
   file: \\"currentFile.js\\",
   load: () => Promise.all([import(
-  /* webpackChunkName: 'Bar' */
+  /* webpackChunkName: 'Foo' */
   \\"./Foo\\"), _importCss(\\"Bar\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
@@ -311,6 +311,37 @@ _universalImport({
   resolve: () => require.resolveWeak(\\"./Foo.js\\"),
   chunkName: () => \\"Foo\\"
 });
+"
+`;
+
+exports[`static import (with relative paths + nested folder) 1`] = `
+"
+const obj = {component:()=>import(\`../components/nestedComponent\`)}; ()=> obj.component()
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path = _interopRequireDefault(require(\\"path\\")).default;
+
+var _importCss = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\")).default;
+
+var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const obj = {
+  component: () => _universalImport({
+    id: \\"../components/nestedComponent\\",
+    file: \\"currentFile.js\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'components-nestedComponent' */
+    \`../components/nestedComponent\`), _importCss(\`components/nestedComponent\`, {})]).then(proms => proms[0]),
+    path: () => _path.join(__dirname, \`../components/nestedComponent\`),
+    resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
+    chunkName: () => \`components/nestedComponent\`
+  })
+};
+
+() => obj.component();
 "
 `;
 
