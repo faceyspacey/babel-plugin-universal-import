@@ -24,10 +24,9 @@ module.exports = function(chunkName, options) {
     return
   }
 
-  if (ADDED[href] === true) {
-    return Promise.resolve()
+  if (ADDED[href]) {
+    return ADDED[href]
   }
-  ADDED[href] = true
 
   var head = document.getElementsByTagName('head')[0]
   var link = document.createElement('link')
@@ -37,9 +36,8 @@ module.exports = function(chunkName, options) {
   link.rel = 'stylesheet'
   link.timeout = 30000
 
-  return new Promise(function(resolve, reject) {
-    var timeout
-    var img
+  var promise = new Promise(function(resolve, reject) {
+    var timeout, img
 
     var onload = function() {
       // Check if we created the img tag.
@@ -58,8 +56,7 @@ module.exports = function(chunkName, options) {
     link.onerror = function() {
       link.onerror = link.onload = null // avoid mem leaks in IE.
       clearTimeout(timeout)
-      var message = 'could not load css chunk: ' + chunkName
-      reject(new Error(message))
+      reject(new Error('could not load css chunk: ' + chunkName))
     }
 
     if (isOnloadSupported() && 'onload' in link) {
@@ -79,6 +76,10 @@ module.exports = function(chunkName, options) {
     timeout = setTimeout(link.onerror, link.timeout)
     head.appendChild(link)
   })
+
+  ADDED[href] = promise
+
+  return promise
 }
 
 function getHref(chunkName) {
