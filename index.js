@@ -149,7 +149,7 @@ function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
   const trimmedChunkName = existingChunkName
-    ? t.stringLiteral(existingChunkName)
+    ? t.stringLiteral(generatedChunkName)
     : createTrimmedChunkName(t, importArgNode)
 
   delete argPath.node.leadingComments
@@ -197,6 +197,14 @@ function chunkNameOption(t, chunkNameTemplate, importArgNode) {
   return t.objectProperty(t.identifier('chunkName'), chunkName)
 }
 
+function checkForNestedChunkName(node) {
+  const generatedChunkName = getMagicCommentChunkName(node)
+  const isNested =
+    generatedChunkName.indexOf('[request]') === -1 &&
+    generatedChunkName.indexOf('/') > -1
+  return isNested && prepareChunkNamePath(generatedChunkName)
+}
+
 module.exports = function universalImportPlugin({ types: t, template }) {
   const chunkNameTemplate = template('() => MODULE')
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
@@ -211,9 +219,12 @@ module.exports = function universalImportPlugin({ types: t, template }) {
       Import(p) {
         if (p[visited]) return
         p[visited] = true
-
         const importArgNode = getImportArgPath(p).node
         t.existingChunkName = existingMagicCommentChunkName(importArgNode)
+        // no existing chunkname, no problem - we will reuse that for fixing nested chunk names
+        if (!t.existingChunkName) {
+          t.existingChunkName = checkForNestedChunkName(importArgNode)
+        }
         const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
 
         const cssOptions = {
