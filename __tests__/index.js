@@ -25,6 +25,8 @@ pluginTester({
     'static import (with file extension)': 'import("./Foo.js")',
     'static import (string template)': 'import(`./base`)',
     'static import (string template + relative paths)': 'import(`../../base`)',
+    'static import (with relative paths + nested folder)':
+      'const obj = {component:()=>import(`../components/nestedComponent`)}; ()=> obj.component()',
     'dynamic import (string template)': 'import(`./base/${page}`)',
     'dynamic import (string template with nested folder)':
       'import(`./base/${page}/nested/folder`)',
