@@ -26,6 +26,8 @@ pluginTester({
     'static import (string template)': 'import(`./base`)',
     'static import (string template + relative paths)': 'import(`../../base`)',
     'static import (with relative paths + nested folder)':
+      'import(`../components/nestedComponent`)',
+    'static import (with relative paths + nested folder + as a function)':
       'const obj = {component:()=>import(`../components/nestedComponent`)}; ()=> obj.component()',
     'dynamic import (string template)': 'import(`./base/${page}`)',
     'dynamic import (string template with nested folder)':
@@ -38,6 +40,7 @@ pluginTester({
       'import(`../../base/${page}`)',
     'await import() should receive a thennable without calling .then':
       'async ({ page }) => await import(`../components/${page}`);',
+    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")',
     'babelServer: true': {
       code: 'import("./Foo")',
       pluginOptions: { babelServer: true }
@@ -45,8 +48,7 @@ pluginTester({
     'disableWarnings: true': {
       code: 'import("./Foo")',
       pluginOptions: { disableWarnings: true }
-    },
-    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")'
+    }
   }
 })
 
