@@ -107,7 +107,7 @@ const UniversalComponent = universal(props => universalImport({
 
 <UniversalComponent page='Foo' />
 ```
-> NOTE: if you aren't using `react-universal-component` and you just want to serve CSS chunks from [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin), use [babel-plugin-dual-import](https://github.com/faceyspacey/babel-plugin-universal-import) instead.
+> NOTE: if you aren't using `react-universal-component` and you just want to serve CSS chunks from [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin), use [babel-plugin-dual-import](https://github.com/faceyspacey/babel-plugin-dual-import) instead.
 
 It names all your chunks using *magic comments* 🔮 behind the scenes and is derived from the imported file. This works with both static and dynamic import paths, as you can see above.
 
