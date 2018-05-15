@@ -207,6 +207,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
 
         const importArgNode = getImportArgPath(p).node
         t.existingChunkName = existingMagicCommentChunkName(importArgNode)
+
         // no existing chunkname, no problem - we will reuse that for fixing nested chunk names
         if (!t.existingChunkName) {
           t.existingChunkName = checkForNestedChunkName(importArgNode)
