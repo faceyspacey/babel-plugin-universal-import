@@ -138,7 +138,7 @@ function fileOption(t, p) {
   )
 }
 
-function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
+function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const existingChunkName = t.existingChunkName
@@ -219,7 +219,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(t, loadTemplate, p, importArgNode, cssOptions).value,
+            loadOption(t, loadTemplate, p, importArgNode).value,
             t.booleanLiteral(false)
           ])
 
