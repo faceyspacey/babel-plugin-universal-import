@@ -87,40 +87,20 @@ function getComponentId(t, importArgNode) {
 
 function existingMagicCommentChunkName(importArgNode) {
   const { leadingComments } = importArgNode
-
-  if (leadingComments) {
-    const data = leadingComments
-      .map((comment, index) => {
-        if (comment.value.indexOf('webpackChunkName') !== -1) {
-          let parsed
-          try {
-            parsed = JSON5.parse(`{${comment.value}}`)
-          }
-          catch (error) {
-            return null
-          }
-
-          const value = parsed && parsed.webpackChunkName
-          if (value) {
-            // Cleanup comment from old chunk name
-            delete parsed.webpackChunkName
-            comment.value = JSON5.stringify(parsed).slice(1, -1)
-
-            // Remove empty comments
-            if (comment.value === '') {
-              leadingComments.splice(index, 1)
-            }
-
-            return value
-          }
-        }
-
-        return null
-      })
-      .filter(Boolean)
-
-    // Last entry wins
-    return data.pop()
+  if (
+    leadingComments &&
+    leadingComments.length &&
+    leadingComments[0].value.indexOf('webpackChunkName') !== -1
+  ) {
+    try {
+      return leadingComments[0].value
+        .split('webpackChunkName:')[1]
+        .replace(/["']/g, '')
+        .trim()
+    }
+    catch (e) {
+      return null
+    }
   }
 
   return null
@@ -143,7 +123,11 @@ function loadOption(t, loadTemplate, p, importArgNode) {
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
+  const trimmedChunkName = existingChunkName
+    ? t.stringLiteral(generatedChunkName)
+    : createTrimmedChunkName(t, importArgNode)
 
+  delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
   const load = loadTemplate({
