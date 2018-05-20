@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`await import() should receive a thennable without calling .then 1`] = `
+exports[`universal-import await import() should receive a thennable without calling .then: await import() should receive a thennable without calling .then 1`] = `
 "
 async ({ page }) => await import(\`../components/\${page}\`);
 
@@ -18,7 +18,7 @@ async ({
 "
 `;
 
-exports[`babelServer: true 1`] = `
+exports[`universal-import babelServer: true: babelServer: true 1`] = `
 "
 import(\\"./Foo\\")
 
@@ -40,7 +40,7 @@ _universalImport({
 "
 `;
 
-exports[`disableWarnings: true 1`] = `
+exports[`universal-import disableWarnings: true: disableWarnings: true 1`] = `
 "
 import(\\"./Foo\\")
 
@@ -65,7 +65,7 @@ _universalImport({
 "
 `;
 
-exports[`dynamic import (string template + relative paths) 1`] = `
+exports[`universal-import dynamic import (string template + relative paths): dynamic import (string template + relative paths) 1`] = `
 "
 import(\`../../base/\${page}\`)
 
@@ -90,7 +90,7 @@ _universalImport({
 "
 `;
 
-exports[`dynamic import (string template - dynamic at 1st segment) 1`] = `
+exports[`universal-import dynamic import (string template - dynamic at 1st segment): dynamic import (string template - dynamic at 1st segment) 1`] = `
 "
 import(\`./\${page}\`)
 
@@ -115,7 +115,7 @@ _universalImport({
 "
 `;
 
-exports[`dynamic import (string template with multiple nested folders) 1`] = `
+exports[`universal-import dynamic import (string template with multiple nested folders): dynamic import (string template with multiple nested folders) 1`] = `
 "
 import(\`./base/\${page}/nested/{$another}folder\`)
 
@@ -140,7 +140,7 @@ _universalImport({
 "
 `;
 
-exports[`dynamic import (string template with nested folder) 1`] = `
+exports[`universal-import dynamic import (string template with nested folder): dynamic import (string template with nested folder) 1`] = `
 "
 import(\`./base/\${page}/nested/folder\`)
 
@@ -165,7 +165,7 @@ _universalImport({
 "
 `;
 
-exports[`dynamic import (string template) 1`] = `
+exports[`universal-import dynamic import (string template): dynamic import (string template) 1`] = `
 "
 import(\`./base/\${page}\`)
 
@@ -190,7 +190,7 @@ _universalImport({
 "
 `;
 
-exports[`existing chunkName 1`] = `
+exports[`universal-import existing chunkName: existing chunkName 1`] = `
 "
 import(/* webpackChunkName: 'Bar' */\\"./Foo\\")
 
@@ -215,7 +215,7 @@ _universalImport({
 "
 `;
 
-exports[`static import (import as function with relative paths + nested folder) 1`] = `
+exports[`universal-import static import (import as function with relative paths + nested folder): static import (import as function with relative paths + nested folder) 1`] = `
 "
 const obj = {component:()=>import(\`../components/nestedComponent\`)}; ()=> obj.component()
 
@@ -244,7 +244,7 @@ const obj = {
 "
 `;
 
-exports[`static import (relative paths + nested folder) 1`] = `
+exports[`universal-import static import (relative paths + nested folder): static import (relative paths + nested folder) 1`] = `
 "
 import(\`../components/nestedComponent\`)
 
@@ -269,7 +269,7 @@ _universalImport({
 "
 `;
 
-exports[`static import (string template + relative paths) 1`] = `
+exports[`universal-import static import (string template + relative paths): static import (string template + relative paths) 1`] = `
 "
 import(\`../../base\`)
 
@@ -294,7 +294,7 @@ _universalImport({
 "
 `;
 
-exports[`static import (string template) 1`] = `
+exports[`universal-import static import (string template): static import (string template) 1`] = `
 "
 import(\`./base\`)
 
@@ -319,7 +319,7 @@ _universalImport({
 "
 `;
 
-exports[`static import (with file extension) 1`] = `
+exports[`universal-import static import (with file extension): static import (with file extension) 1`] = `
 "
 import(\\"./Foo.js\\")
 
@@ -344,7 +344,7 @@ _universalImport({
 "
 `;
 
-exports[`static import (with relative paths) 1`] = `
+exports[`universal-import static import (with relative paths): static import (with relative paths) 1`] = `
 "
 import(\\"../../Foo\\")
 
@@ -369,7 +369,7 @@ _universalImport({
 "
 `;
 
-exports[`static import 1`] = `
+exports[`universal-import static import: static import 1`] = `
 "
 import(\\"./Foo\\")
 
