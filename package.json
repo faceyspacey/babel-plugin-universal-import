@@ -49,7 +49,7 @@
     "semantic-release": "^6.3.6",
     "travis-github-status": "^1.6.3"
   },
-  "peerDependencies":{
+  "peerDependencies": {
     "webpack": "^4.4.0"
   },
   "config": {
