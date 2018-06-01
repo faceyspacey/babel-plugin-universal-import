@@ -233,6 +233,55 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "
 `;
 
+exports[`multiple imports 1`] = `
+"
+import(\\"one\\"); import(\\"two\\"); import(\\"three\\");
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"one\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'one' */
+  \\"one\\"), (0, _importCss2.default)(\\"one\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"one\\"),
+  resolve: () => require.resolveWeak(\\"one\\"),
+  chunkName: () => \\"one\\"
+});
+
+(0, _universalImport2.default)({
+  id: \\"two\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'two' */
+  \\"two\\"), _importCss(\\"two\\", {})]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"two\\"),
+  resolve: () => require.resolveWeak(\\"two\\"),
+  chunkName: () => \\"two\\"
+});
+
+(0, _universalImport2.default)({
+  id: \\"three\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'three' */
+  \\"three\\"), _importCss(\\"three\\", {})]).then(proms => proms[0]),
+  path: () => _path.join(__dirname, \\"three\\"),
+  resolve: () => require.resolveWeak(\\"three\\"),
+  chunkName: () => \\"three\\"
+});
+"
+`;
+
 exports[`static import (import as function with relative paths + nested folder) 1`] = `
 "
 const obj = {component:()=>import(\`../components/nestedComponent\`)}; ()=> obj.component()

@@ -51,7 +51,8 @@ pluginTester({
       code: 'import("./Foo")',
       pluginOptions: { disableWarnings: true }
     },
-    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")'
+    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")',
+    'multiple imports': 'import("one"); import("two"); import("three");'
   }
 })
 
