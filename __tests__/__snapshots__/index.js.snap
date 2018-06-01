@@ -225,7 +225,7 @@ _universalImport({
   file: \\"currentFile.js\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Bar' */
-  \\"./Foo\\"), _importCss(\\"Foo\\", {})]).then(proms => proms[0]),
+  \\"./Foo\\"), _importCss(\\"Bar\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Bar\\"
@@ -253,7 +253,7 @@ const obj = {
     file: \\"currentFile.js\\",
     load: () => Promise.all([import(
     /* webpackChunkName: 'components-nestedComponent' */
-    \`../components/nestedComponent\`), _importCss(\\"components/nestedComponent\\", {})]).then(proms => proms[0]),
+    \`../components/nestedComponent\`), _importCss(\\"components-nestedComponent\\", {})]).then(proms => proms[0]),
     path: () => _path.join(__dirname, \`../components/nestedComponent\`),
     resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
     chunkName: () => \\"components-nestedComponent\\"
@@ -283,7 +283,7 @@ _universalImport({
   file: \\"currentFile.js\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components-nestedComponent' */
-  \`../components/nestedComponent\`), _importCss(\\"components/nestedComponent\\", {})]).then(proms => proms[0]),
+  \`../components/nestedComponent\`), _importCss(\\"components-nestedComponent\\", {})]).then(proms => proms[0]),
   path: () => _path.join(__dirname, \`../components/nestedComponent\`),
   resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
   chunkName: () => \\"components-nestedComponent\\"
