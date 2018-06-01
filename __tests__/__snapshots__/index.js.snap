@@ -239,43 +239,41 @@ import(\\"one\\"); import(\\"two\\"); import(\\"three\\");
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path2 = _interopRequireDefault(require(\\"path\\"));
+var _path4 = _interopRequireDefault(require(\\"path\\"));
 
-var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+var _importCss4 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
 
-var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+var _universalImport4 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _universalImport4.default)({
   id: \\"one\\",
   file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'one' */
-  \\"one\\"), (0, _importCss2.default)(\\"one\\", {})]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"one\\"),
+  \\"one\\"), (0, _importCss4.default)(\\"one\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"one\\"),
   resolve: () => require.resolveWeak(\\"one\\"),
   chunkName: () => \\"one\\"
 });
-
-(0, _universalImport2.default)({
+(0, _universalImport4.default)({
   id: \\"two\\",
   file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'two' */
-  \\"two\\"), _importCss(\\"two\\", {})]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"two\\"),
+  \\"two\\"), (0, _importCss4.default)(\\"two\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"two\\"),
   resolve: () => require.resolveWeak(\\"two\\"),
   chunkName: () => \\"two\\"
 });
-
-(0, _universalImport2.default)({
+(0, _universalImport4.default)({
   id: \\"three\\",
   file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'three' */
-  \\"three\\"), _importCss(\\"three\\", {})]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"three\\"),
+  \\"three\\"), (0, _importCss4.default)(\\"three\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"three\\"),
   resolve: () => require.resolveWeak(\\"three\\"),
   chunkName: () => \\"three\\"
 });

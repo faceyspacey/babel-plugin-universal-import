@@ -34,12 +34,8 @@ function prepareChunkNamePath(path) {
   return path.replace(/\//g, '-')
 }
 
-function getImport(p, { id, source, nameHint }) {
-  if (!p.hub.file[id]) {
-    p.hub.file[id] = addDefault(p, source, { nameHint })
-  }
-
-  return p.hub.file[id]
+function getImport(p, { source, nameHint }) {
+  return addDefault(p, source, { nameHint })
 }
 
 function createTrimmedChunkName(t, importArgNode) {
