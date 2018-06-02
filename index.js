@@ -97,7 +97,8 @@ function existingMagicCommentChunkName(importArgNode) {
         .split('webpackChunkName:')[1]
         .replace(/["']/g, '')
         .trim()
-    } catch (e) {
+    }
+    catch (e) {
       return null
     }
   }
@@ -213,20 +214,20 @@ module.exports = function universalImportPlugin({ types: t, template }) {
 
         const opts = this.opts.babelServer
           ? [
-              idOption(t, importArgNode),
-              fileOption(t, p),
-              pathOption(t, pathTemplate, p, importArgNode),
-              resolveOption(t, resolveTemplate, importArgNode),
-              chunkNameOption(t, chunkNameTemplate, importArgNode)
-            ]
+            idOption(t, importArgNode),
+            fileOption(t, p),
+            pathOption(t, pathTemplate, p, importArgNode),
+            resolveOption(t, resolveTemplate, importArgNode),
+            chunkNameOption(t, chunkNameTemplate, importArgNode)
+          ]
           : [
-              idOption(t, importArgNode),
-              fileOption(t, p),
-              loadOption(t, loadTemplate, p, importArgNode),
-              pathOption(t, pathTemplate, p, importArgNode),
-              resolveOption(t, resolveTemplate, importArgNode),
-              chunkNameOption(t, chunkNameTemplate, importArgNode)
-            ]
+            idOption(t, importArgNode),
+            fileOption(t, p),
+            loadOption(t, loadTemplate, p, importArgNode),
+            pathOption(t, pathTemplate, p, importArgNode),
+            resolveOption(t, resolveTemplate, importArgNode),
+            chunkNameOption(t, chunkNameTemplate, importArgNode)
+          ]
 
         const options = t.objectExpression(opts)
 
