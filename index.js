@@ -124,7 +124,7 @@ function loadOption(t, loadTemplate, p, importArgNode) {
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
   const trimmedChunkName = existingChunkName
-    ? t.stringLiteral(generatedChunkName)
+    ? t.stringLiteral(existingChunkName)
     : createTrimmedChunkName(t, importArgNode)
 
   delete argPath.node.leadingComments
