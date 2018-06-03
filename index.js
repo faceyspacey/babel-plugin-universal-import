@@ -97,8 +97,7 @@ function existingMagicCommentChunkName(importArgNode) {
         .split('webpackChunkName:')[1]
         .replace(/["']/g, '')
         .trim()
-    }
-    catch (e) {
+    } catch (e) {
       return null
     }
   }
@@ -131,7 +130,8 @@ function loadOption(t, loadTemplate, p, importArgNode) {
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
   const load = loadTemplate({
-    IMPORT: argPath.parent
+    IMPORT: argPath.parent,
+    MODULE: trimmedChunkName
   }).expression
 
   return t.objectProperty(t.identifier('load'), load)
@@ -204,7 +204,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(t, loadTemplate, p, importArgNode).value,
+            loadOption(t, loadTemplate, p, importArgNode, cssOptions).value,
             t.booleanLiteral(false)
           ])
 
@@ -214,20 +214,20 @@ module.exports = function universalImportPlugin({ types: t, template }) {
 
         const opts = this.opts.babelServer
           ? [
-            idOption(t, importArgNode),
-            fileOption(t, p),
-            pathOption(t, pathTemplate, p, importArgNode),
-            resolveOption(t, resolveTemplate, importArgNode),
-            chunkNameOption(t, chunkNameTemplate, importArgNode)
-          ]
+              idOption(t, importArgNode),
+              fileOption(t, p),
+              pathOption(t, pathTemplate, p, importArgNode),
+              resolveOption(t, resolveTemplate, importArgNode),
+              chunkNameOption(t, chunkNameTemplate, importArgNode)
+            ]
           : [
-            idOption(t, importArgNode),
-            fileOption(t, p),
-            loadOption(t, loadTemplate, p, importArgNode),
-            pathOption(t, pathTemplate, p, importArgNode),
-            resolveOption(t, resolveTemplate, importArgNode),
-            chunkNameOption(t, chunkNameTemplate, importArgNode)
-          ]
+              idOption(t, importArgNode),
+              fileOption(t, p),
+              loadOption(t, loadTemplate, p, importArgNode, cssOptions), // only when not on a babel-server
+              pathOption(t, pathTemplate, p, importArgNode),
+              resolveOption(t, resolveTemplate, importArgNode),
+              chunkNameOption(t, chunkNameTemplate, importArgNode)
+            ]
 
         const options = t.objectExpression(opts)
 

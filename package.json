@@ -11,7 +11,10 @@
     "url": "https://github.com/faceyspacey/babel-plugin-universal-import/issues"
   },
   "homepage": "https://github.com/faceyspacey/babel-plugin-universal-import#readme",
-  "author": "James Gillmore james@faceyspacey.com>",
+  "author": "James Gillmore <james@faceyspacey.com>",
+  "contributors": [
+    "Zack Jackson <zackary.l.jackson@gmail.com>"
+  ],
   "license": "MIT",
   "scripts": {
     "test": "jest",
