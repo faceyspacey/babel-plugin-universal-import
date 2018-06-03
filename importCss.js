@@ -24,6 +24,8 @@ module.exports = function(chunkName, options) {
     return
   }
 
+  console.log('TEST')
+
   if (ADDED[href]) {
     return ADDED[href]
   }
