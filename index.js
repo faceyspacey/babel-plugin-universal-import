@@ -176,7 +176,9 @@ module.exports = function universalImportPlugin({ types: t, template }) {
   const chunkNameTemplate = template('() => MODULE')
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
-  const loadTemplate = template('() => Promise.all([IMPORT, MODULE]).then(proms => proms[0])')
+  const loadTemplate = template(
+    '() => Promise.all([IMPORT, MODULE]).then(proms => proms[0])'
+  )
 
   return {
     name: 'universal-import',
