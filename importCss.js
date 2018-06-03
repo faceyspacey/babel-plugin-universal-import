@@ -6,6 +6,8 @@ module.exports = function(chunkName, options) {
   var opts = options || {}
   var href = getHref(chunkName)
   if (!href) {
+    console.log('TEST0')
+
     if (process.env.NODE_ENV === 'development' && !opts.disableWarnings) {
       if (typeof window === 'undefined' || !window.__CSS_CHUNKS__) {
         console.warn(
@@ -24,7 +26,7 @@ module.exports = function(chunkName, options) {
     return
   }
 
-  console.log('TEST')
+  console.log('TEST1')
 
   if (ADDED[href]) {
     return ADDED[href]
