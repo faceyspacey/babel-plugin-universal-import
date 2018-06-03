@@ -3,6 +3,7 @@
 var ADDED = {}
 
 module.exports = function(chunkName, options) {
+  return
   var opts = options || {}
   var href = getHref(chunkName)
   if (!href) {
@@ -25,65 +26,6 @@ module.exports = function(chunkName, options) {
 
     return
   }
-
-  console.log('TEST1')
-
-  if (ADDED[href]) {
-    return ADDED[href]
-  }
-
-  var head = document.getElementsByTagName('head')[0]
-  var link = document.createElement('link')
-
-  link.charset = 'utf-8'
-  link.type = 'text/css'
-  link.rel = 'stylesheet'
-  link.timeout = 30000
-
-  var promise = new Promise(function(resolve, reject) {
-    var timeout, img
-
-    var onload = function() {
-      // Check if we created the img tag.
-      // If we did then the chunk was loaded via img.src
-      // and we need to set the link.href which will then
-      // load the resource from cache
-      if (img) {
-        link.href = href
-        img.onerror = null // avoid mem leaks in IE.
-      }
-      link.onerror = null // avoid mem leaks in IE.
-      clearTimeout(timeout)
-      resolve()
-    }
-
-    link.onerror = function() {
-      link.onerror = link.onload = null // avoid mem leaks in IE.
-      clearTimeout(timeout)
-      reject(new Error('could not load css chunk: ' + chunkName))
-    }
-
-    if (isOnloadSupported() && 'onload' in link) {
-      link.onload = onload
-      link.href = href
-    } else {
-      // Use img.src as a fallback to loading the css chunk in browsers
-      // which don’t support link.onload
-      // We use the img.onerror handler because an error will always fire
-      // when parsing the response
-      // Then we know the resource has been loaded
-      img = document.createElement('img')
-      img.onerror = onload
-      img.src = href
-    }
-
-    timeout = setTimeout(link.onerror, link.timeout)
-    head.appendChild(link)
-  })
-
-  ADDED[href] = promise
-
-  return promise
 }
 
 function getHref(chunkName) {
