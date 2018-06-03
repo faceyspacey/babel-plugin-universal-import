@@ -11,7 +11,10 @@
     "url": "https://github.com/faceyspacey/babel-plugin-universal-import/issues"
   },
   "homepage": "https://github.com/faceyspacey/babel-plugin-universal-import#readme",
-  "author": "James Gillmore james@faceyspacey.com>",
+  "author": "James Gillmore <james@faceyspacey.com>",
+  "contributors": [
+    "Zack Jackson <zackary.l.jackson@gmail.com>"
+  ],
   "license": "MIT",
   "scripts": {
     "test": "jest",
@@ -47,7 +50,10 @@
     "prettier": "^1.5.2",
     "rimraf": "^2.5.4",
     "semantic-release": "^6.3.6",
-    "travis-github-status": "^1.6.1"
+    "travis-github-status": "^1.6.3"
+  },
+  "peerDependencies": {
+    "webpack": "^4.4.0"
   },
   "config": {
     "commitizen": {
