@@ -4,15 +4,18 @@ const pluginTester = require('babel-plugin-tester')
 const createBabylonOptions = require('babylon-options')
 const plugin = require('../index')
 const babel = require('@babel/core')
-const dynamicSyntax = require('@babel/plugin-syntax-dynamic-import')
-const stage2 = require('@babel/preset-stage-2')
-const es2015 = require('@babel/preset-es2015')
 
 const babelOptions = {
-  filename: 'currentFile.js',
+  filename: '/dev/null',
   parserOpts: createBabylonOptions({
-    stage: 2
-  })
+    plugins: ['dynamicImport']
+  }),
+  presets: ['@babel/preset-react'],
+  plugins: [
+    '@babel/plugin-syntax-dynamic-import',
+    ['@babel/plugin-transform-modules-commonjs', { strictMode: false }]
+  ],
+  babelrc: false
 }
 
 pluginTester({
@@ -48,7 +51,8 @@ pluginTester({
       code: 'import("./Foo")',
       pluginOptions: { disableWarnings: true }
     },
-    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")'
+    'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")',
+    'multiple imports': 'import("one"); import("two"); import("three");'
   }
 })
 
@@ -59,11 +63,12 @@ test.skip('wallaby-live-coding', () => {
   // const input = 'universal(props => import(`./footer/${props.experiment}`));'
   const input = 'import(`./base/${page}/index`)'
 
-  const output = babel.transform(input, {
-    filename: 'currentFile.js',
-    plugins: [dynamicSyntax, plugin],
-    presets: [es2015, stage2]
-  })
+  const output = babel.transform(
+    input,
+    Object.assign({}, babelOptions, {
+      plugins: babelOptions.plugins.concat([plugin])
+    })
+  )
 
   expect(output.code).toBeDefined()
 })
