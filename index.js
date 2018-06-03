@@ -123,27 +123,7 @@ function fileOption(t, p) {
   )
 }
 
-function getCssOptionExpression(t, cssOptions) {
-  const opts = Object.keys(cssOptions).reduce((options, option) => {
-    const cssOption = cssOptions[option]
-    const optionType = typeof cssOption
-
-    if (optionType !== 'undefined') {
-      const optionProperty = t.objectProperty(
-        t.identifier(option),
-        t[`${optionType}Literal`](cssOption)
-      )
-
-      options.push(optionProperty)
-    }
-
-    return options
-  }, [])
-
-  return t.objectExpression(opts)
-}
-
-function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
+function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const existingChunkName = t.existingChunkName
@@ -251,7 +231,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           : [
             idOption(t, importArgNode),
             fileOption(t, p),
-            loadOption(t, loadTemplate, p, importArgNode, cssOptions), // only when not on a babel-server
+            loadOption(t, loadTemplate, p, importArgNode), // only when not on a babel-server
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
