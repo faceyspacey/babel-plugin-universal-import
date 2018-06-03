@@ -118,16 +118,12 @@ function loadOption(t, loadTemplate, p, importArgNode) {
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
-  const trimmedChunkName = existingChunkName
-    ? t.stringLiteral(existingChunkName)
-    : createTrimmedChunkName(t, importArgNode)
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
   const load = loadTemplate({
-    IMPORT: argPath.parent,
-    // MODULE: trimmedChunkName
+    IMPORT: argPath.parent
   }).expression
 
   return t.objectProperty(t.identifier('load'), load)
