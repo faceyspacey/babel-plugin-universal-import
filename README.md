@@ -174,3 +174,33 @@ Below is a screenshot of this module's tests running in [Wallaby](https://wallab
 
 ## More from FaceySpacey in Reactlandia
 - [redux-first-router](https://github.com/faceyspacey/redux-first-router). It's made to work perfectly with *Universal*. Together they comprise our *"frameworkless"* Redux-based approach to what Next.js does (splitting, SSR, prefetching, routing).
+
+## Who Uses This?
+
+<div class="table-to">
+
+| Logo  | Link |
+| ------------- | ------------- |
+| <img src="https://github.com/nozzle/react-static/raw/master/media/logo.png" width="100px">   | <a style="verticle-align: middle" href="https://babeljs.io" target="_blank">React Static</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/9637642?s=100&v=4"> | <a style="verticle-align: middle" href="https://babeljs.io" target="_blank"> babel</a> |
+| <img src="https://serverjs.io/img/logo.svg" width="100px"> | <a href="https://serverjs.io" target="_blank"> server.js</a>  |
+| <img src="https://avatars3.githubusercontent.com/u/536423?s=200&v=4" width="100px"> | <a href="https://maidsafe.net/" target="_blank">MaidSafe</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/7892489?s=200&v=4" width="100px"> | <a href="https://www.netlify.com" target="_blank">Netlify</a>  |
+| <img src="https://avatars3.githubusercontent.com/u/30272234?s=200&v=4" width="100px"> | <a href="https://github.com/react-tools" target="_blank">React Tools</a>  |
+| <img src="https://avatars3.githubusercontent.com/u/38453540?s=200&v=4" width="100px"> | <a href="https://tethys.ai" target="_blank">Tethys Foundation</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/33561521?s=200&v=4" width="100px"> | <a href="https://weekly.bestofjs.org/" target="_blank">Best of JavaScript</a>  |
+| <img src="https://avatars1.githubusercontent.com/u/27872045?s=200&v=4" width="100px"> | <a href="https://www.brickblock.io/" target="_blank">Brickblock.io</a>  |
+| <img src="https://avatars2.githubusercontent.com/u/29357421?s=200&v=4" width="100px"> | <a href="http://spothire.io" target="_blank">SpotHire.io</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/430976?s=200&v=4" width="100px"> | <a href="http://www.selleo.com" target="_blank">Selleo</a>  |
+| <img src="https://avatars2.githubusercontent.com/u/23117951?s=200&v=4" width="100px"> | <a href="https://github.com/olymp" target="_blank">olymp</a>  |
+| <img src="https://user-images.githubusercontent.com/25274700/40890261-58f84f36-6741-11e8-8364-ffb2688c9afd.png" width="100px"> | <a href="http://headlesscms.org/" target="_blank">HeadlessCMS.org</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/25452765?s=200&v=4" width="100px"> | <a href="http://morpheo.co" target="_blank">MorpheoOrg</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/11651989?s=200&v=4" width="100px"> | <a href="https://github.com/ueno-llc/starter-kit-universally" target="_blank">ueno</a>  |
+| <img src="https://avatars3.githubusercontent.com/u/11614918?s=200&v=4" width="100px"> | <a href="https://github.com/madeagency/reactivity" target="_blank">MADE Code</a>  |
+| <img src="https://avatars0.githubusercontent.com/u/2903987?s=200&v=4" width="100px"> | <a href="https://github.com/sebastian-software" target="_blank">Sebastian Software GmbH</a>  |
+| Eric Elliott | <a href="https://www.brickblock.io/" target="_blank">autodux</a>  |
+| See More?  | <a href="https://github.com/faceyspacey/babel-plugin-universal-import/network/dependents" target="_blank">Repositories that depend on universal-import</a>  |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+<div>
