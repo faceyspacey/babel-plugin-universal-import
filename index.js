@@ -155,12 +155,10 @@ function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
-  const cssOpts = getCssOptionExpression(t, cssOptions)
   const load = loadTemplate({
     IMPORT: argPath.parent,
     IMPORT_CSS: getImport(p, IMPORT_CSS_DEFAULT),
-    MODULE: trimmedChunkName,
-    CSS_OPTIONS: cssOpts
+    MODULE: trimmedChunkName
   }).expression
 
   return t.objectProperty(t.identifier('load'), load)
@@ -228,17 +226,13 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         }
         const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
 
-        const cssOptions = {
-          disableWarnings: this.opts.disableWarnings
-        }
-
         // if being used in an await statement, return load() promise
         if (
           p.parentPath.parentPath.isYieldExpression() || // await transformed already
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(t, loadTemplate, p, importArgNode, cssOptions).value,
+            loadOption(t, loadTemplate, p, importArgNode).value,
             t.booleanLiteral(false)
           ])
 
