@@ -137,7 +137,6 @@ function loadOption(t, loadTemplate, p, importArgNode) {
 
   const load = loadTemplate({
     IMPORT: argPath.parent,
-    IMPORT_CSS: getImport(p, IMPORT_CSS_DEFAULT),
     MODULE: trimmedChunkName
   }).expression
 
@@ -187,7 +186,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
   const chunkNameTemplate = template('() => MODULE')
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
-  const loadTemplate = template('() => Promise.all([IMPORT, IMPORT_CSS(MODULE)]).then(proms => proms[0])')
+  const loadTemplate = template('() => Promise.all([IMPORT, MODULE]).then(proms => proms[0])')
 
   return {
     name: 'universal-import',
