@@ -1,240 +1,307 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`universal-import await import() should receive a thennable without calling .then: await import() should receive a thennable without calling .then 1`] = `
+exports[`await import() should receive a thennable without calling .then 1`] = `
 "
 async ({ page }) => await import(\`../components/\${page}\`);
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 async ({
   page
-}) => await _universalImport(() => Promise.all([import(
+}) => await (0, _universalImport2.default)(() => Promise.all([import(
 /* webpackChunkName: 'components/[request]' */
-\`../components/\${page}\`), \`components/\${page}\`]).then(proms => proms[0]), false);
+\`../components/\${page}\`), (0, _importCss2.default)(\`components/\${page}\`, {})]).then(proms => proms[0]), false);
 "
 `;
 
-exports[`universal-import babelServer: true: babelServer: true 1`] = `
+exports[`babelServer: true 1`] = `
 "
 import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"currentFile.js\\",
-  path: () => _path.join(__dirname, \\"./Foo\\"),
+  file: \\"/dev/null\\",
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });
 "
 `;
 
-exports[`universal-import disableWarnings: true: disableWarnings: true 1`] = `
+exports[`disableWarnings: true 1`] = `
 "
 import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
-  \\"./Foo\\"), \\"Foo\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"./Foo\\"),
+  \\"./Foo\\"), (0, _importCss2.default)(\\"Foo\\", {
+    disableWarnings: true
+  })]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });
 "
 `;
 
-exports[`universal-import dynamic import (string template + relative paths): dynamic import (string template + relative paths) 1`] = `
+exports[`dynamic import (string template + relative paths) 1`] = `
 "
 import(\`../../base/\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"../../base/\${page}\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
-  \`../../base/\${page}\`), \`base/\${page}\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`../../base/\${page}\`),
+  \`../../base/\${page}\`), (0, _importCss2.default)(\`base/\${page}\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`../../base/\${page}\`),
   resolve: () => require.resolveWeak(\`../../base/\${page}\`),
   chunkName: () => \`base/\${page}\`
 });
 "
 `;
 
-exports[`universal-import dynamic import (string template - dynamic at 1st segment): dynamic import (string template - dynamic at 1st segment) 1`] = `
+exports[`dynamic import (string template - dynamic at 1st segment) 1`] = `
 "
 import(\`./\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./\${page}\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: '[request]' */
-  \`./\${page}\`), \`\${page}\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`./\${page}\`),
+  \`./\${page}\`), (0, _importCss2.default)(\`\${page}\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./\${page}\`),
   resolve: () => require.resolveWeak(\`./\${page}\`),
   chunkName: () => \`\${page}\`
 });
 "
 `;
 
-exports[`universal-import dynamic import (string template with multiple nested folders): dynamic import (string template with multiple nested folders) 1`] = `
+exports[`dynamic import (string template with multiple nested folders) 1`] = `
 "
 import(\`./base/\${page}/nested/{$another}folder\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./base/\${page}/nested/{$another}folder\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
-  \`./base/\${page}/nested/{$another}folder\`), \`base/\${page}-nested-{$another}folder\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
+  \`./base/\${page}/nested/{$another}folder\`), (0, _importCss2.default)(\`base/\${page}-nested-{$another}folder\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/{$another}folder\`),
   chunkName: () => \`base/\${page}-nested-{$another}folder\`
 });
 "
 `;
 
-exports[`universal-import dynamic import (string template with nested folder): dynamic import (string template with nested folder) 1`] = `
+exports[`dynamic import (string template with nested folder) 1`] = `
 "
 import(\`./base/\${page}/nested/folder\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./base/\${page}/nested/folder\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
-  \`./base/\${page}/nested/folder\`), \`base/\${page}-nested-folder\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`./base/\${page}/nested/folder\`),
+  \`./base/\${page}/nested/folder\`), (0, _importCss2.default)(\`base/\${page}-nested-folder\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/folder\`),
   chunkName: () => \`base/\${page}-nested-folder\`
 });
 "
 `;
 
-exports[`universal-import dynamic import (string template): dynamic import (string template) 1`] = `
+exports[`dynamic import (string template) 1`] = `
 "
 import(\`./base/\${page}\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./base/\${page}\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
-  \`./base/\${page}\`), \`base/\${page}\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`./base/\${page}\`),
+  \`./base/\${page}\`), (0, _importCss2.default)(\`base/\${page}\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./base/\${page}\`),
   resolve: () => require.resolveWeak(\`./base/\${page}\`),
   chunkName: () => \`base/\${page}\`
 });
 "
 `;
 
-exports[`universal-import existing chunkName: existing chunkName 1`] = `
+exports[`existing chunkName 1`] = `
 "
 import(/* webpackChunkName: 'Bar' */\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Bar' */
-  \\"./Foo\\"), \\"Bar\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"./Foo\\"),
+  \\"./Foo\\"), (0, _importCss2.default)(\\"Bar\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Bar\\"
 });
 "
 `;
 
-exports[`universal-import static import (import as function with relative paths + nested folder): static import (import as function with relative paths + nested folder) 1`] = `
+exports[`multiple imports 1`] = `
+"
+import(\\"one\\"); import(\\"two\\"); import(\\"three\\");
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path4 = _interopRequireDefault(require(\\"path\\"));
+
+var _importCss4 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport4 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport4.default)({
+  id: \\"one\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'one' */
+  \\"one\\"), (0, _importCss4.default)(\\"one\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"one\\"),
+  resolve: () => require.resolveWeak(\\"one\\"),
+  chunkName: () => \\"one\\"
+});
+(0, _universalImport4.default)({
+  id: \\"two\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'two' */
+  \\"two\\"), (0, _importCss4.default)(\\"two\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"two\\"),
+  resolve: () => require.resolveWeak(\\"two\\"),
+  chunkName: () => \\"two\\"
+});
+(0, _universalImport4.default)({
+  id: \\"three\\",
+  file: \\"/dev/null\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'three' */
+  \\"three\\"), (0, _importCss4.default)(\\"three\\", {})]).then(proms => proms[0]),
+  path: () => _path4.default.join(__dirname, \\"three\\"),
+  resolve: () => require.resolveWeak(\\"three\\"),
+  chunkName: () => \\"three\\"
+});
+"
+`;
+
+exports[`static import (import as function with relative paths + nested folder) 1`] = `
 "
 const obj = {component:()=>import(\`../components/nestedComponent\`)}; ()=> obj.component()
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const obj = {
-  component: () => _universalImport({
+  component: () => (0, _universalImport2.default)({
     id: \\"../components/nestedComponent\\",
-    file: \\"currentFile.js\\",
+    file: \\"/dev/null\\",
     load: () => Promise.all([import(
     /* webpackChunkName: 'components-nestedComponent' */
-    \`../components/nestedComponent\`), \\"components-nestedComponent\\"]).then(proms => proms[0]),
-    path: () => _path.join(__dirname, \`../components/nestedComponent\`),
+    \`../components/nestedComponent\`), (0, _importCss2.default)(\\"components-nestedComponent\\", {})]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, \`../components/nestedComponent\`),
     resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
     chunkName: () => \\"components-nestedComponent\\"
   })
@@ -244,150 +311,162 @@ const obj = {
 "
 `;
 
-exports[`universal-import static import (relative paths + nested folder): static import (relative paths + nested folder) 1`] = `
+exports[`static import (relative paths + nested folder) 1`] = `
 "
 import(\`../components/nestedComponent\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"../components/nestedComponent\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components-nestedComponent' */
-  \`../components/nestedComponent\`), \\"components-nestedComponent\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`../components/nestedComponent\`),
+  \`../components/nestedComponent\`), (0, _importCss2.default)(\\"components-nestedComponent\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`../components/nestedComponent\`),
   resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
   chunkName: () => \\"components-nestedComponent\\"
 });
 "
 `;
 
-exports[`universal-import static import (string template + relative paths): static import (string template + relative paths) 1`] = `
+exports[`static import (string template + relative paths) 1`] = `
 "
 import(\`../../base\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"../../base\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
-  \`../../base\`), \`base\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`../../base\`),
+  \`../../base\`), (0, _importCss2.default)(\`base\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`../../base\`),
   resolve: () => require.resolveWeak(\`../../base\`),
   chunkName: () => \`base\`
 });
 "
 `;
 
-exports[`universal-import static import (string template): static import (string template) 1`] = `
+exports[`static import (string template) 1`] = `
 "
 import(\`./base\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./base\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
-  \`./base\`), \`base\`]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \`./base\`),
+  \`./base\`), (0, _importCss2.default)(\`base\`, {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./base\`),
   resolve: () => require.resolveWeak(\`./base\`),
   chunkName: () => \`base\`
 });
 "
 `;
 
-exports[`universal-import static import (with file extension): static import (with file extension) 1`] = `
+exports[`static import (with file extension) 1`] = `
 "
 import(\\"./Foo.js\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./Foo.js\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
-  \\"./Foo.js\\"), \\"Foo\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"./Foo.js\\"),
+  \\"./Foo.js\\"), (0, _importCss2.default)(\\"Foo\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo.js\\"),
   resolve: () => require.resolveWeak(\\"./Foo.js\\"),
   chunkName: () => \\"Foo\\"
 });
 "
 `;
 
-exports[`universal-import static import (with relative paths): static import (with relative paths) 1`] = `
+exports[`static import (with relative paths) 1`] = `
 "
 import(\\"../../Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"../../Foo\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
-  \\"../../Foo\\"), \\"Foo\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"../../Foo\\"),
+  \\"../../Foo\\"), (0, _importCss2.default)(\\"Foo\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"../../Foo\\"),
   resolve: () => require.resolveWeak(\\"../../Foo\\"),
   chunkName: () => \\"Foo\\"
 });
 "
 `;
 
-exports[`universal-import static import: static import 1`] = `
+exports[`static import 1`] = `
 "
 import(\\"./Foo\\")
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-var _path = _interopRequireDefault(require(\\"path\\")).default;
+var _path2 = _interopRequireDefault(require(\\"path\\"));
 
-var _universalImport = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\")).default;
+var _importCss2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/importCss\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_universalImport({
+(0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"currentFile.js\\",
+  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
-  \\"./Foo\\"), \\"Foo\\"]).then(proms => proms[0]),
-  path: () => _path.join(__dirname, \\"./Foo\\"),
+  \\"./Foo\\"), (0, _importCss2.default)(\\"Foo\\", {})]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });
