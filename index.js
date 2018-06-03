@@ -127,7 +127,7 @@ function loadOption(t, loadTemplate, p, importArgNode) {
 
   const load = loadTemplate({
     IMPORT: argPath.parent,
-    MODULE: trimmedChunkName
+    // MODULE: trimmedChunkName
   }).expression
 
   return t.objectProperty(t.identifier('load'), load)
@@ -177,7 +177,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
   const loadTemplate = template(
-    '() => Promise.all([IMPORT, MODULE]).then(proms => proms[0])'
+    '() => Promise.all([IMPORT]).then(proms => proms[0])'
   )
 
   return {
