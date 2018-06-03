@@ -10,12 +10,6 @@ const IMPORT_UNIVERSAL_DEFAULT = {
   nameHint: 'universalImport'
 }
 
-const IMPORT_CSS_DEFAULT = {
-  id: Symbol('importCssId'),
-  source: 'babel-plugin-universal-import/importCss',
-  nameHint: 'importCss'
-}
-
 const IMPORT_PATH_DEFAULT = {
   id: Symbol('pathId'),
   source: 'path',
