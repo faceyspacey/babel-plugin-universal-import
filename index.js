@@ -10,12 +10,6 @@ const IMPORT_UNIVERSAL_DEFAULT = {
   nameHint: 'universalImport'
 }
 
-const IMPORT_CSS_DEFAULT = {
-  id: Symbol('importCssId'),
-  source: 'babel-plugin-universal-import/importCss',
-  nameHint: 'importCss'
-}
-
 const IMPORT_PATH_DEFAULT = {
   id: Symbol('pathId'),
   source: 'path',
@@ -119,44 +113,17 @@ function fileOption(t, p) {
   )
 }
 
-function getCssOptionExpression(t, cssOptions) {
-  const opts = Object.keys(cssOptions).reduce((options, option) => {
-    const cssOption = cssOptions[option]
-    const optionType = typeof cssOption
-
-    if (optionType !== 'undefined') {
-      const optionProperty = t.objectProperty(
-        t.identifier(option),
-        t[`${optionType}Literal`](cssOption)
-      )
-
-      options.push(optionProperty)
-    }
-
-    return options
-  }, [])
-
-  return t.objectExpression(opts)
-}
-
-function loadOption(t, loadTemplate, p, importArgNode, cssOptions) {
+function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
-  const trimmedChunkName = existingChunkName
-    ? t.stringLiteral(existingChunkName)
-    : createTrimmedChunkName(t, importArgNode)
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
 
-  const cssOpts = getCssOptionExpression(t, cssOptions)
   const load = loadTemplate({
-    IMPORT: argPath.parent,
-    IMPORT_CSS: getImport(p, IMPORT_CSS_DEFAULT),
-    MODULE: trimmedChunkName,
-    CSS_OPTIONS: cssOpts
+    IMPORT: argPath.parent
   }).expression
 
   return t.objectProperty(t.identifier('load'), load)
@@ -206,7 +173,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
   const resolveTemplate = template('() => require.resolveWeak(MODULE)')
   const loadTemplate = template(
-    '() => Promise.all([IMPORT, IMPORT_CSS(MODULE, CSS_OPTIONS)]).then(proms => proms[0])'
+    '() => Promise.all([IMPORT]).then(proms => proms[0])'
   )
 
   return {
@@ -224,17 +191,13 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         }
         const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
 
-        const cssOptions = {
-          disableWarnings: this.opts.disableWarnings
-        }
-
         // if being used in an await statement, return load() promise
         if (
           p.parentPath.parentPath.isYieldExpression() || // await transformed already
           t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
-            loadOption(t, loadTemplate, p, importArgNode, cssOptions).value,
+            loadOption(t, loadTemplate, p, importArgNode).value,
             t.booleanLiteral(false)
           ])
 
@@ -253,7 +216,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           : [
             idOption(t, importArgNode),
             fileOption(t, p),
-            loadOption(t, loadTemplate, p, importArgNode, cssOptions), // only when not on a babel-server
+            loadOption(t, loadTemplate, p, importArgNode), // only when not on a babel-server
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
