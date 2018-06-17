@@ -3,14 +3,14 @@
 module.exports = function(config, makeThennable) {
   if (makeThennable === false) return config
 
-  var load = config.load
+  var load = config.load()
   config.then = function(cb) {
-    return load().then(function(res) {
+    return load.then(function(res) {
       return cb && cb(res)
     })
   }
   config.catch = function(cb) {
-    return load().catch(function(e) {
+    return load.catch(function(e) {
       return cb && cb(e)
     })
   }
