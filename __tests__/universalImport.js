@@ -1,22 +1,37 @@
 import universalImport from '../universalImport'
 
 describe('universalImport function functions as expected', () => {
-  it('executes the promise', () => {
+  it('calls load() on the client without .then() or .catch() being called', () => {
     const load = jest.fn()
     const config = {
       load: () => new Promise(load)
     }
-    const result = universalImport(config)
+    universalImport(config)
     expect(load).toHaveBeenCalled()
+  })
+
+  it("doesn't call load() on the server unless .then() or .catch() is called", () => {
+    const load = jest.fn()
+    const config = {
+      load: () => new Promise(load),
+      testServer: true
+    }
+    universalImport(config)
+    expect(load).not.toHaveBeenCalled()
   })
 
   it('executes chained promise', () => {
     let resolvePromise
+    let loadPromise
     const config = {
-      load: () =>
-        new Promise(resolve => {
-          resolvePromise = resolve
-        })
+      load: () => {
+        if (!loadPromise) {
+          loadPromise = new Promise(resolve => {
+            resolvePromise = resolve
+          })
+        }
+        return loadPromise
+      }
     }
     const result = universalImport(config)
     const chainedFunction = jest.fn()
@@ -33,11 +48,16 @@ describe('universalImport function functions as expected', () => {
 
   it('executes chained catch', () => {
     let rejectPromise
+    let loadPromise
     const config = {
-      load: () =>
-        new Promise((_, reject) => {
-          rejectPromise = reject
-        })
+      load: () => {
+        if (!loadPromise) {
+          loadPromise = new Promise((_, reject) => {
+            rejectPromise = reject
+          })
+        }
+        return loadPromise
+      }
     }
     const result = universalImport(config)
     const chainedFunction = jest.fn()
