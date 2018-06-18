@@ -56,7 +56,7 @@ Taking from the [test snapshots](./__tests__/__snapshots__/index.js.snap), it do
 
 ```js
 import universal from 'react-universal-component'
-const UniversalComponent = universal(import('./Foo.js'))
+const UniversalComponent = universal(() => import('./Foo.js'))
 
 <UniversalComponent />
 
@@ -66,7 +66,7 @@ import universal from 'react-universal-component'
 import universalImport from 'babel-plugin-universal-import/universalImport.js'
 import path from 'path'
 
-const UniversalComponent = universal(universalImport({
+const UniversalComponent = universal(() => universalImport({
   chunkName: () => 'Foo',
   path: () => path.join(__dirname, './Foo.js'),
   resolve: () => require.resolveWeak('./Foo.js'),
@@ -112,8 +112,6 @@ Otherwise, what it's doing is providing all the different types of requires/path
 The targeted **use-case** for all this is dynamic imports where you can pass a `page` prop to the resulting component, thereby allowing you to create one `<UniversalComponent page={page} />` for a large number of your components. This is a major upgrade to the previous way of having to make a hash of a million async components in a wrapping component. You no longer have to think about *Universal Components* as anything different than your other components that use simple HoCs.
 
 
-And maybe even *cooler* to some: you don't have to do `universal(() => import())`. I.e. you don't have to wrap it in a function any longer when using `react-universal-component`, similar to `dynamic(import())` in Next.js...*unless of course you're making use of the extremely useful `props` argument.*
-
 ## Typescript and non-Babel environments
 
 If you can't use babel, you can either copy what this plugin does above, or you can do a shorter version where you just put the important configuration key/vals on the 2nd options argument to `universal`:
@@ -155,8 +153,6 @@ Checkout the rest of the packages in the *"Universal"* family:
 
 ## Caveat
 - For chunks to be properly created--and since their names are automatically generated for you--you can't have different chunks with the same name, say `index`. So instead of ```import(`./index`)```, make your imports like this: ```import(`../ComponentFolderA`)``` and ```import(`../ComponentFolderB`)```. Notice you're going back one directory--this allows the chunk name to be generated uniquely even though the entry point file is `index.js` for both components. In addition, if in multiple places you import the same module, make sure they both start with the same base directory name. **Again, using `..` is your friend. Initial dots and slashes will be stripped from the resulting chunk name.**
-
-- To the discerning eye, you may be wondering if the return of `import()` is still *thenable*?? It is! However, if you don't call `.then` on it, somewhere (perhaps in the components like *react-universal-component* that you pass it to), then it won't perform the import. Since most of us are using modules, which we need to do something with in the `then` callback, that's not a problem. But if you happen to be importing a module that does its own setup, such as attaches something to the `window` object, well then you just need to call `.then()` to trigger it. That's a rare case these days, which is why we decided to go with the simplicity seen here. And yes, async await works too.
 
 ## Contributing
 
