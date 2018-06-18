@@ -4,6 +4,7 @@ module.exports = function(config, makeThennable) {
   if (makeThennable === false) return config
 
   var load = config.load
+  !(isServer() || config.testServer) && load && load()
   config.then = function(cb) {
     return load().then(function(res) {
       return cb && cb(res)
@@ -15,6 +16,14 @@ module.exports = function(config, makeThennable) {
     })
   }
   return config
+}
+
+function isServer() {
+  return !(
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  )
 }
 
 var isSet = false
