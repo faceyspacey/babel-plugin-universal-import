@@ -106,13 +106,6 @@ function idOption(t, importArgNode) {
   return t.objectProperty(t.identifier('id'), t.stringLiteral(id))
 }
 
-function fileOption(t, p) {
-  return t.objectProperty(
-    t.identifier('file'),
-    t.stringLiteral(p.hub.file.opts.filename)
-  )
-}
-
 function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
@@ -208,14 +201,12 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         const opts = this.opts.babelServer
           ? [
             idOption(t, importArgNode),
-            fileOption(t, p),
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
           : [
             idOption(t, importArgNode),
-            fileOption(t, p),
             loadOption(t, loadTemplate, p, importArgNode), // only when not on a babel-server
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
