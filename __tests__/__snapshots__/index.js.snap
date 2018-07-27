@@ -33,7 +33,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _universalImport2.default)({
   id: \\"./Foo\\",
   file: \\"/dev/null\\",
-  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  path: () => _path2.default.join(__dirname, \\"Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });
@@ -58,7 +58,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo\\")]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  path: () => _path2.default.join(__dirname, \\"Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });
@@ -83,7 +83,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`../../base/\${page}\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`../../base/\${page}\`),
+  path: () => _path2.default.join(__dirname, \`base/\${page}\`),
   resolve: () => require.resolveWeak(\`../../base/\${page}\`),
   chunkName: () => \`base/\${page}\`
 });
@@ -108,7 +108,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: '[request]' */
   \`./\${page}\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./\${page}\`),
+  path: () => _path2.default.join(__dirname, \`\${page}\`),
   resolve: () => require.resolveWeak(\`./\${page}\`),
   chunkName: () => \`\${page}\`
 });
@@ -133,7 +133,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}/nested/{$another}folder\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
+  path: () => _path2.default.join(__dirname, \`base/\${page}-nested-{$another}folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/{$another}folder\`),
   chunkName: () => \`base/\${page}-nested-{$another}folder\`
 });
@@ -158,7 +158,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}/nested/folder\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/folder\`),
+  path: () => _path2.default.join(__dirname, \`base/\${page}-nested-folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/folder\`),
   chunkName: () => \`base/\${page}-nested-folder\`
 });
@@ -183,7 +183,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./base/\${page}\`),
+  path: () => _path2.default.join(__dirname, \`base/\${page}\`),
   resolve: () => require.resolveWeak(\`./base/\${page}\`),
   chunkName: () => \`base/\${page}\`
 });
@@ -208,7 +208,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'Bar' */
   \\"./Foo\\")]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  path: () => _path2.default.join(__dirname, \\"Bar\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Bar\\"
 });
@@ -279,7 +279,7 @@ const obj = {
     load: () => Promise.all([import(
     /* webpackChunkName: 'components-nestedComponent' */
     \`../components/nestedComponent\`)]).then(proms => proms[0]),
-    path: () => _path2.default.join(__dirname, \`../components/nestedComponent\`),
+    path: () => _path2.default.join(__dirname, \\"components-nestedComponent\\"),
     resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
     chunkName: () => \\"components-nestedComponent\\"
   })
@@ -307,7 +307,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'components-nestedComponent' */
   \`../components/nestedComponent\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`../components/nestedComponent\`),
+  path: () => _path2.default.join(__dirname, \\"components-nestedComponent\\"),
   resolve: () => require.resolveWeak(\`../components/nestedComponent\`),
   chunkName: () => \\"components-nestedComponent\\"
 });
@@ -332,7 +332,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
   \`../../base\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`../../base\`),
+  path: () => _path2.default.join(__dirname, \`base\`),
   resolve: () => require.resolveWeak(\`../../base\`),
   chunkName: () => \`base\`
 });
@@ -357,7 +357,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
   \`./base\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./base\`),
+  path: () => _path2.default.join(__dirname, \`base\`),
   resolve: () => require.resolveWeak(\`./base\`),
   chunkName: () => \`base\`
 });
@@ -382,7 +382,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo.js\\")]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"./Foo.js\\"),
+  path: () => _path2.default.join(__dirname, \\"Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo.js\\"),
   chunkName: () => \\"Foo\\"
 });
@@ -407,7 +407,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"../../Foo\\")]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"../../Foo\\"),
+  path: () => _path2.default.join(__dirname, \\"Foo\\"),
   resolve: () => require.resolveWeak(\\"../../Foo\\"),
   chunkName: () => \\"Foo\\"
 });
@@ -432,7 +432,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo\\")]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  path: () => _path2.default.join(__dirname, \\"Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
 });

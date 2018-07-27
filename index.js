@@ -69,6 +69,13 @@ function getMagicCommentChunkName(importArgNode) {
   return trimChunkNameBaseDir(chunkName)
 }
 
+function getChunkName(t, importArgNode) {
+  const existingChunkName = t.existingChunkName
+  const generatedChunk = createTrimmedChunkName(t, importArgNode)
+
+  return existingChunkName ? t.stringLiteral(existingChunkName) : generatedChunk
+}
+
 function getComponentId(t, importArgNode) {
   const { quasis, expressions } = importArgNode
   if (!quasis) return importArgNode.value
@@ -130,9 +137,10 @@ function loadOption(t, loadTemplate, p, importArgNode) {
 }
 
 function pathOption(t, pathTemplate, p, importArgNode) {
+  const chunkName = getChunkName(t, importArgNode)
   const path = pathTemplate({
     PATH: getImport(p, IMPORT_PATH_DEFAULT),
-    MODULE: importArgNode
+    MODULE: chunkName
   }).expression
 
   return t.objectProperty(t.identifier('path'), path)
@@ -147,12 +155,7 @@ function resolveOption(t, resolveTemplate, importArgNode) {
 }
 
 function chunkNameOption(t, chunkNameTemplate, importArgNode) {
-  const existingChunkName = t.existingChunkName
-  const generatedChunk = createTrimmedChunkName(t, importArgNode)
-  const trimmedChunkName = existingChunkName
-    ? t.stringLiteral(existingChunkName)
-    : generatedChunk
-
+  const trimmedChunkName = getChunkName(t, importArgNode)
   const chunkName = chunkNameTemplate({
     MODULE: trimmedChunkName
   }).expression
