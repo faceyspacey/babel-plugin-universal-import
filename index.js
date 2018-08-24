@@ -205,22 +205,23 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           return
         }
 
-        const opts = this.opts.babelServer
+        const opts = (this.opts.babelServer
           ? [
             idOption(t, importArgNode),
-            fileOption(t, p),
+            this.opts.includeFileName ? fileOption(t, p) : undefined,
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
           : [
             idOption(t, importArgNode),
-            fileOption(t, p),
+            this.opts.includeFileName ? fileOption(t, p) : undefined,
             loadOption(t, loadTemplate, p, importArgNode), // only when not on a babel-server
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
+        ).filter(p => p)
 
         const options = t.objectExpression(opts)
 

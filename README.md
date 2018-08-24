@@ -146,6 +146,20 @@ If your compiling the server with Babel, set the following option so `import()` 
 }
 ```
 
+## Include additional debugging info
+To prevent leaking of information, file names are not included in the final output. However, for debugging purposes, you may set the `includeFileName` flag option to true.  This will include the path to the source file from which the import() is happening to be exposed.
+
+```js
+{
+  "plugins": [
+    ["universal-import", {
+      "includeFileName": true
+    }]
+  ]
+}
+```
+
+
 ## Next Steps
 
 Checkout the rest of the packages in the *"Universal"* family:
