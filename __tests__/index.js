@@ -4,12 +4,8 @@ const pluginTester = require('babel-plugin-tester')
 const createBabylonOptions = require('babylon-options')
 const plugin = require('../index')
 const babel = require('@babel/core')
-const process = require('process')
-
-const isWindows = process.platform === 'win32'
 
 const babelOptions = {
-  filename: isWindows ? 'C:/user/folder' : '/dev/null',
   parserOpts: createBabylonOptions({
     plugins: ['dynamicImport']
   }),
