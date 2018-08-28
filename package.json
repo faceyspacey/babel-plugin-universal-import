@@ -25,13 +25,13 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.49",
-    "@babel/core": "^7.0.0-beta.49",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.49",
-    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.49",
-    "@babel/preset-react": "^7.0.0-beta.49",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-core": "^7.0.0-0",
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^21.2.0",
     "babel-plugin-tester": "^5.0.0",
     "babylon-options": "^2.0.1",
@@ -70,6 +70,6 @@
     "verbose": true
   },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.0.0-beta.49"
+    "@babel/helper-module-imports": "^7.0.0"
   }
 }
