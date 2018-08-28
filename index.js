@@ -2,6 +2,8 @@
 
 const { addDefault } = require('@babel/helper-module-imports')
 
+const path = require('path')
+
 const visited = Symbol('visited')
 
 const IMPORT_UNIVERSAL_DEFAULT = {
@@ -109,7 +111,10 @@ function idOption(t, importArgNode) {
 function fileOption(t, p) {
   return t.objectProperty(
     t.identifier('file'),
-    t.stringLiteral(p.hub.file.opts.filename)
+    t.stringLiteral(
+      path.relative(__dirname, p.hub.file.opts.filename || '') || ''
+    )
+    // t.stringLiteral(p.hub.file.opts.filename)
   )
 }
 
@@ -221,7 +226,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
-        ).filter(p => p)
+        ).filter(Boolean)
 
         const options = t.objectExpression(opts)
 
