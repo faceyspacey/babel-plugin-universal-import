@@ -114,7 +114,6 @@ function fileOption(t, p) {
     t.stringLiteral(
       path.relative(__dirname, p.hub.file.opts.filename || '') || ''
     )
-    // t.stringLiteral(p.hub.file.opts.filename)
   )
 }
 
