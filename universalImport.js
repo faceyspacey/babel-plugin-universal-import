@@ -29,8 +29,7 @@ function setHasPlugin() {
       var weakId = require.resolveWeak('react-universal-component')
       universal = __webpack_require__(weakId)
     } else {
-      var pkg = 'react-universal-component'
-      universal = module.require(pkg)
+      universal = module.require('react-universal-component')
     }
 
     if (universal) {
