@@ -6,7 +6,6 @@ const plugin = require('../index')
 const babel = require('@babel/core')
 
 const babelOptions = {
-  filename: '/dev/null',
   parserOpts: createBabylonOptions({
     plugins: ['dynamicImport']
   }),

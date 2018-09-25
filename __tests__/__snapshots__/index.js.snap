@@ -32,7 +32,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"/dev/null\\",
   path: () => _path2.default.join(__dirname, \\"./Foo\\"),
   resolve: () => require.resolveWeak(\\"./Foo\\"),
   chunkName: () => \\"Foo\\"
@@ -54,7 +53,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo\\")]).then(proms => proms[0]),
@@ -79,7 +77,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"../../base/\${page}\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`../../base/\${page}\`)]).then(proms => proms[0]),
@@ -104,7 +101,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./\${page}\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: '[request]' */
   \`./\${page}\`)]).then(proms => proms[0]),
@@ -129,7 +125,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./base/\${page}/nested/{$another}folder\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}/nested/{$another}folder\`)]).then(proms => proms[0]),
@@ -154,7 +149,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./base/\${page}/nested/folder\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}/nested/folder\`)]).then(proms => proms[0]),
@@ -179,7 +173,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./base/\${page}\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
   \`./base/\${page}\`)]).then(proms => proms[0]),
@@ -204,7 +197,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Bar' */
   \\"./Foo\\")]).then(proms => proms[0]),
@@ -229,7 +221,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport4.default)({
   id: \\"one\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'one' */
   \\"one\\")]).then(proms => proms[0]),
@@ -239,7 +230,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 (0, _universalImport4.default)({
   id: \\"two\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'two' */
   \\"two\\")]).then(proms => proms[0]),
@@ -249,7 +239,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 });
 (0, _universalImport4.default)({
   id: \\"three\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'three' */
   \\"three\\")]).then(proms => proms[0]),
@@ -275,7 +264,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const obj = {
   component: () => (0, _universalImport2.default)({
     id: \\"../components/nestedComponent\\",
-    file: \\"/dev/null\\",
     load: () => Promise.all([import(
     /* webpackChunkName: 'components-nestedComponent' */
     \`../components/nestedComponent\`)]).then(proms => proms[0]),
@@ -303,7 +291,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"../components/nestedComponent\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components-nestedComponent' */
   \`../components/nestedComponent\`)]).then(proms => proms[0]),
@@ -328,7 +315,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"../../base\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
   \`../../base\`)]).then(proms => proms[0]),
@@ -353,7 +339,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./base\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base' */
   \`./base\`)]).then(proms => proms[0]),
@@ -378,7 +363,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./Foo.js\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo.js\\")]).then(proms => proms[0]),
@@ -403,7 +387,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"../../Foo\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"../../Foo\\")]).then(proms => proms[0]),
@@ -428,7 +411,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _universalImport2.default)({
   id: \\"./Foo\\",
-  file: \\"/dev/null\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Foo' */
   \\"./Foo\\")]).then(proms => proms[0]),
