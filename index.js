@@ -1,5 +1,15 @@
 'use-strict'
 
+const validMagicStrings = [
+  'webpackMode',
+  // 'webpackMagicChunkName' gets dealt with current implementation & naming/renaming strategy
+  'webpackInclude',
+  'webpackExclude',
+  'webpackIgnore',
+  'webpackPreload',
+  'webpackPrefetch'
+]
+
 const { addDefault } = require('@babel/helper-module-imports')
 
 const path = require('path')
@@ -61,6 +71,28 @@ function prepareQuasi(quasi) {
   })
 }
 
+function getMagicWebpackComments(importArgNode) {
+  const { leadingComments } = importArgNode
+  const results = []
+  if (leadingComments && leadingComments.length) {
+    leadingComments.forEach(comment => {
+      try {
+        const validMagicString = validMagicStrings.filter(str =>
+          new RegExp(`${str}\\w*:`).test(comment.value)
+        )
+        // keep this comment if we found a match
+        if (validMagicString && validMagicString.length === 1) {
+          results.push(comment)
+        }
+      }
+      catch (e) {
+        // eat the error, but don't give up
+      }
+    })
+  }
+  return results
+}
+
 function getMagicCommentChunkName(importArgNode) {
   const { quasis, expressions } = importArgNode
   if (!quasis) return trimChunkNameBaseDir(importArgNode.value)
@@ -120,11 +152,15 @@ function fileOption(t, p) {
 function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
+  const otherValidMagicComments = getMagicWebpackComments(importArgNode)
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
+  otherValidMagicComments.forEach(validLeadingComment =>
+    argPath.addComment('leading', validLeadingComment.value)
+  )
 
   const load = loadTemplate({
     IMPORT: argPath.parent

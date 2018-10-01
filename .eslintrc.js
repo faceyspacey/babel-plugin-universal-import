@@ -37,6 +37,7 @@ module.exports = {
     alert: true
   },
   rules: {
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
     'import/extensions': [
       'error',
       'always',

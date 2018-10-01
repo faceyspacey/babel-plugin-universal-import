@@ -183,6 +183,223 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "
 `;
 
+exports[`existing chunkName + strips out unknown things 1`] = `
+"
+import(
+  /* webpackFakeProperty1: \\"Lazy\\" */
+  /* webpackChunkName: 'Bar'*/
+  /* webpackFakeProperty3123: /foobar/ */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackPrefetch 1`] = `
+"
+import(
+  /* webpackChunkName: 'Bar'*/
+  /* webpackPrefetch: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackPrefetch: true */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackPreload 1`] = `
+"
+import(
+  /* webpackChunkName: 'Bar'*/
+  /* webpackPreload: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackPreload: true */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
+"
+import(
+  /* webpackChunkName: 'Bar'*/
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  /* webpackExclude: /(?!*test.js)$/ */
+  /* webpackIgnore: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackIgnore: true */
+
+  /* webpackExclude: /(?!*test.js)$/ */
+
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
+"
+import(
+  /* webpackChunkName: 'Bar'*/
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  /* webpackExclude: /(?!*test.js)$/ */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackExclude: /(?!*test.js)$/ */
+
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackmode + webpackInclude 1`] = `
+"
+import(
+  /* webpackChunkName: 'Bar'*/
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
+exports[`existing chunkName + webpackmode 1`] = `
+"
+import(/* webpackChunkName: 'Bar'*//* webpackMode: \\"Lazy\\" */\\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Bar' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Bar\\"
+});
+"
+`;
+
 exports[`existing chunkName 1`] = `
 "
 import(/* webpackChunkName: 'Bar' */\\"./Foo\\")
@@ -245,6 +462,192 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path4.default.join(__dirname, \\"three\\"),
   resolve: () => require.resolveWeak(\\"three\\"),
   chunkName: () => \\"three\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackPrefetch 1`] = `
+"
+import(
+  /* webpackPrefetch: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackPrefetch: true */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackPreload 1`] = `
+"
+import(
+  /* webpackPreload: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackPreload: true */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
+"
+import(
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  /* webpackExclude: /(?!*test.js)$/ */
+  /* webpackIgnore: true */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackIgnore: true */
+
+  /* webpackExclude: /(?!*test.js)$/ */
+
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
+"
+import(
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  /* webpackExclude: /(?!*test.js)$/ */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackExclude: /(?!*test.js)$/ */
+
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackmode + webpackInclude 1`] = `
+"
+import(
+  /* webpackMode: \\"Lazy\\" */
+  /* webpackInclude: /*.js$/ */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackInclude: /*.js$/ */
+
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
+});
+"
+`;
+
+exports[`no chunkName + webpackmode 1`] = `
+"
+import(
+  /* webpackMode: \\"Lazy\\" */
+  \\"./Foo\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _universalImport2.default)({
+  id: \\"./Foo\\",
+  load: () => Promise.all([import(
+  /* webpackMode: \\"Lazy\\" */
+
+  /* webpackChunkName: 'Foo' */
+  \\"./Foo\\")]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \\"./Foo\\"),
+  resolve: () => require.resolveWeak(\\"./Foo\\"),
+  chunkName: () => \\"Foo\\"
 });
 "
 `;
