@@ -54,6 +54,11 @@
   "peerDependencies": {
     "webpack": "^4.4.0"
   },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)(spec|test).js?(x)"
+    ]
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
