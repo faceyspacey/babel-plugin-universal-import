@@ -46,11 +46,13 @@ function getImport(p, { source, nameHint }) {
 
 function createTrimmedChunkName(t, importArgNode) {
   if (importArgNode.quasis) {
-    const quasis = importArgNode.quasis.slice(0)
+    let quasis = importArgNode.quasis.slice(0)
     const baseDir = trimChunkNameBaseDir(quasis[0].value.cooked)
     quasis[0] = Object.assign({}, quasis[0], {
       value: { raw: baseDir, cooked: baseDir }
     })
+
+    quasis = quasis.map((quasi, i) => (i > 0 ? prepareQuasi(quasi) : quasi))
 
     return Object.assign({}, importArgNode, {
       quasis
@@ -59,6 +61,14 @@ function createTrimmedChunkName(t, importArgNode) {
 
   const moduleName = trimChunkNameBaseDir(importArgNode.value)
   return t.stringLiteral(moduleName)
+}
+
+function prepareQuasi(quasi) {
+  const newPath = prepareChunkNamePath(quasi.value.cooked)
+
+  return Object.assign({}, quasi, {
+    value: { raw: newPath, cooked: newPath }
+  })
 }
 
 function getMagicWebpackComments(importArgNode) {
