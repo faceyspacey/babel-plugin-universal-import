@@ -9,6 +9,8 @@ src
 .editorconfig
 .eslintrc.js
 .snyk
+.github
 .travis.yml
 wallaby.js
 webpack.config.js
+yarn-error.log
