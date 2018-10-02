@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-universal-import",
-  "version": "4.0.0-alpha.4",
+  "version": "3.1.2",
   "description": "Babel plugin to transform import() into its Universal counterpart",
   "main": "index.js",
   "repository": {
