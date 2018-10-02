@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-universal-import",
-  "version": "0.0.0-development",
+  "version": "3.1.1",
   "description": "Babel plugin to transform import() into its Universal counterpart",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,7 @@
   "homepage": "https://github.com/faceyspacey/babel-plugin-universal-import#readme",
   "author": "James Gillmore <james@faceyspacey.com>",
   "contributors": [
-    "Zack Jackson <zackary.l.jackson@gmail.com> (https://github.com/zackljackson)"
+    "Zack Jackson <zack@ScriptedAlchemy.com> (https://github.com/ScriptedAlchemy)"
   ],
   "license": "MIT",
   "scripts": {
