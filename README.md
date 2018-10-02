@@ -105,7 +105,7 @@ const UniversalComponent = universal(props => universalImport({
 ```
 > NOTE: if you aren't using `react-universal-component` and you just want to serve CSS chunks from [extract-css-chunks-webpack-plugin](https://github.com/faceyspacey/extract-css-chunks-webpack-plugin), its not a problem! extract-css-chunks is completely standalone and fully HMR
 
-It names all your chunks using *magic comments* 🔮 behind the scenes and is derived from the imported file. This works with both static and dynamic import paths, as you can see above.
+It names all your chunks using *magic comments* (see webpack documentation on [magic comments](https://webpack.js.org/api/module-methods/#import-)) 🔮 behind the scenes and is derived from the imported file. This works with both static and dynamic import paths, as you can see above.
 
 Otherwise, what it's doing is providing all the different types of requires/paths/imports/etc needed by tools like [react-universal-component](https://github.com/faceyspacey/react-universal-component) to universally render your component.
 
@@ -145,6 +145,42 @@ If your compiling the server with Babel, set the following option so `import()` 
   ]
 }
 ```
+
+## Include additional debugging info
+To prevent leaking of information, file names are not included in the final output. However, for debugging purposes, you may set the `includeFileName` flag option to true.  This will include the path to the source file from which the import() is happening to be exposed.
+
+```js
+{
+  "plugins": [
+    ["universal-import", {
+      "includeFileName": true
+    }]
+  ]
+}
+```
+
+## Advanced magic comments
+This plugin supports currying of the following magic comments defiend by Webpack to the transpiled output:
+
+- `webpackMode`
+- `webpackInclude`
+- `webpackExclude`
+- `webpackIgnore`
+- `webpackPreload`
+- `webpackPrefetch`
+
+In order to pass that on to the output, you must provide each magic comment in it's own comment block, e.g.
+
+```javascript
+import(
+  /* webpackMode: "lazy" */
+  /* webpackChunkName: "Foo" */
+  "./Foo"
+)
+```
+
+Order in which you specify them will not matter, and invalid leading comments will be stripped out. The logic for naming your webpack chunks remains the same if you specify any of these advanced options.  Please refer to the [webpack documentation](https://webpack.js.org/api/module-methods/#import-) for valid values and configurations of each of these settings.
+
 
 ## Next Steps
 

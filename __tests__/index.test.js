@@ -6,7 +6,6 @@ const plugin = require('../index')
 const babel = require('@babel/core')
 
 const babelOptions = {
-  filename: '/dev/null',
   parserOpts: createBabylonOptions({
     plugins: ['dynamicImport']
   }),
@@ -52,7 +51,75 @@ pluginTester({
       pluginOptions: { disableWarnings: true }
     },
     'existing chunkName': 'import(/* webpackChunkName: \'Bar\' */"./Foo")',
-    'multiple imports': 'import("one"); import("two"); import("three");'
+    'multiple imports': 'import("one"); import("two"); import("three");',
+    'existing chunkName + webpackmode': `import(/* webpackChunkName: 'Bar'*//* webpackMode: "Lazy" */"./Foo")`,
+    'existing chunkName + webpackmode + webpackInclude': `
+      import(
+        /* webpackChunkName: 'Bar'*/
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        "./Foo")`,
+    'existing chunkName + webpackmode + webpackInclude + webpackExclude': `
+      import(
+        /* webpackChunkName: 'Bar'*/
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        /* webpackExclude: /(?!*test.js)$/ */
+        "./Foo")`,
+    'existing chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore': `
+      import(
+        /* webpackChunkName: 'Bar'*/
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        /* webpackExclude: /(?!*test.js)$/ */
+        /* webpackIgnore: true */
+        "./Foo")`,
+    'existing chunkName + strips out unknown things': `
+      import(
+        /* webpackFakeProperty1: "Lazy" */
+        /* webpackChunkName: 'Bar'*/
+        /* webpackFakeProperty3123: /foobar/ */
+        "./Foo")`,
+    'no chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore': `
+      import(
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        /* webpackExclude: /(?!*test.js)$/ */
+        /* webpackIgnore: true */
+        "./Foo")`,
+    'no chunkName + webpackmode + webpackInclude + webpackExclude': `
+      import(
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        /* webpackExclude: /(?!*test.js)$/ */
+        "./Foo")`,
+    'no chunkName + webpackmode + webpackInclude': `
+      import(
+        /* webpackMode: "Lazy" */
+        /* webpackInclude: /*.js$/ */
+        "./Foo")`,
+    'no chunkName + webpackmode': `
+      import(
+        /* webpackMode: "Lazy" */
+        "./Foo")`,
+    'no chunkName + webpackPreload': `
+      import(
+        /* webpackPreload: true */
+        "./Foo")`,
+    'no chunkName + webpackPrefetch': `
+      import(
+        /* webpackPrefetch: true */
+        "./Foo")`,
+    'existing chunkName + webpackPreload': `
+      import(
+        /* webpackChunkName: 'Bar'*/
+        /* webpackPreload: true */
+        "./Foo")`,
+    'existing chunkName + webpackPrefetch': `
+      import(
+        /* webpackChunkName: 'Bar'*/
+        /* webpackPrefetch: true */
+        "./Foo")`
   }
 })
 

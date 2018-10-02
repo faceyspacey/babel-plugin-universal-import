@@ -1,6 +1,18 @@
 'use-strict'
 
+const validMagicStrings = [
+  'webpackMode',
+  // 'webpackMagicChunkName' gets dealt with current implementation & naming/renaming strategy
+  'webpackInclude',
+  'webpackExclude',
+  'webpackIgnore',
+  'webpackPreload',
+  'webpackPrefetch'
+]
+
 const { addDefault } = require('@babel/helper-module-imports')
+
+const path = require('path')
 
 const visited = Symbol('visited')
 
@@ -47,6 +59,28 @@ function createTrimmedChunkName(t, importArgNode) {
 
   const moduleName = trimChunkNameBaseDir(importArgNode.value)
   return t.stringLiteral(moduleName)
+}
+
+function getMagicWebpackComments(importArgNode) {
+  const { leadingComments } = importArgNode
+  const results = []
+  if (leadingComments && leadingComments.length) {
+    leadingComments.forEach(comment => {
+      try {
+        const validMagicString = validMagicStrings.filter(str =>
+          new RegExp(`${str}\\w*:`).test(comment.value)
+        )
+        // keep this comment if we found a match
+        if (validMagicString && validMagicString.length === 1) {
+          results.push(comment)
+        }
+      }
+      catch (e) {
+        // eat the error, but don't give up
+      }
+    })
+  }
+  return results
 }
 
 function getMagicCommentChunkName(importArgNode) {
@@ -99,18 +133,24 @@ function idOption(t, importArgNode) {
 function fileOption(t, p) {
   return t.objectProperty(
     t.identifier('file'),
-    t.stringLiteral(p.hub.file.opts.filename)
+    t.stringLiteral(
+      path.relative(__dirname, p.hub.file.opts.filename || '') || ''
+    )
   )
 }
 
 function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
+  const otherValidMagicComments = getMagicWebpackComments(importArgNode)
   const existingChunkName = t.existingChunkName
   const chunkName = existingChunkName || generatedChunkName
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
+  otherValidMagicComments.forEach(validLeadingComment =>
+    argPath.addComment('leading', validLeadingComment.value)
+  )
 
   const load = loadTemplate({
     IMPORT: argPath.parent
@@ -195,22 +235,23 @@ module.exports = function universalImportPlugin({ types: t, template }) {
           return
         }
 
-        const opts = this.opts.babelServer
+        const opts = (this.opts.babelServer
           ? [
             idOption(t, importArgNode),
-            fileOption(t, p),
+            this.opts.includeFileName ? fileOption(t, p) : undefined,
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
           : [
             idOption(t, importArgNode),
-            fileOption(t, p),
+            this.opts.includeFileName ? fileOption(t, p) : undefined,
             loadOption(t, loadTemplate, p, importArgNode), // only when not on a babel-server
             pathOption(t, pathTemplate, p, importArgNode),
             resolveOption(t, resolveTemplate, importArgNode),
             chunkNameOption(t, chunkNameTemplate, importArgNode)
           ]
+        ).filter(Boolean)
 
         const options = t.objectExpression(opts)
 
