@@ -130,7 +130,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   \`./base/\${page}/nested/{$another}folder\`)]).then(proms => proms[0]),
   path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/{$another}folder\`),
-  chunkName: () => \`base/\${page}/nested/{$another}folder\`
+  chunkName: () => \`base/\${page}-nested-{$another}folder\`
 });
 "
 `;
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   \`./base/\${page}/nested/folder\`)]).then(proms => proms[0]),
   path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/folder\`),
   resolve: () => require.resolveWeak(\`./base/\${page}/nested/folder\`),
-  chunkName: () => \`base/\${page}/nested/folder\`
+  chunkName: () => \`base/\${page}-nested-folder\`
 });
 "
 `;
