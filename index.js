@@ -36,10 +36,6 @@ function trimChunkNameBaseDir(baseDir) {
   return baseDir.replace(/^[./]+|(\.js$)/g, '')
 }
 
-function prepareChunkNamePath(path) {
-  return path.replace(/\//g, '-')
-}
-
 function getImport(p, { source, nameHint }) {
   return addDefault(p, source, { nameHint })
 }
@@ -64,10 +60,8 @@ function createTrimmedChunkName(t, importArgNode) {
 }
 
 function prepareQuasi(quasi) {
-  const newPath = prepareChunkNamePath(quasi.value.cooked)
-
   return Object.assign({}, quasi, {
-    value: { raw: newPath, cooked: newPath }
+    value: { raw: quasi.value.cooked, cooked: quasi.value.cooked }
   })
 }
 
@@ -200,14 +194,6 @@ function chunkNameOption(t, chunkNameTemplate, importArgNode) {
   return t.objectProperty(t.identifier('chunkName'), chunkName)
 }
 
-function checkForNestedChunkName(node) {
-  const generatedChunkName = getMagicCommentChunkName(node)
-  const isNested =
-    generatedChunkName.indexOf('[request]') === -1 &&
-    generatedChunkName.indexOf('/') > -1
-  return isNested && prepareChunkNamePath(generatedChunkName)
-}
-
 module.exports = function universalImportPlugin({ types: t, template }) {
   const chunkNameTemplate = template('() => MODULE')
   const pathTemplate = template('() => PATH.join(__dirname, MODULE)')
@@ -226,9 +212,7 @@ module.exports = function universalImportPlugin({ types: t, template }) {
         const importArgNode = getImportArgPath(p).node
         t.existingChunkName = existingMagicCommentChunkName(importArgNode)
         // no existing chunkname, no problem - we will reuse that for fixing nested chunk names
-        if (!t.existingChunkName) {
-          t.existingChunkName = checkForNestedChunkName(importArgNode)
-        }
+
         const universalImport = getImport(p, IMPORT_UNIVERSAL_DEFAULT)
 
         // if being used in an await statement, return load() promise
