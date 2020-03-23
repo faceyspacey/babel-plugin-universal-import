@@ -39,7 +39,7 @@
     "@babel/plugin-transform-modules-commonjs": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "9.0.0",
+    "babel-eslint": "10.1.0",
     "babel-jest": "21.2.0",
     "babel-plugin-tester": "5.0.0",
     "babylon-options": "2.0.1",
