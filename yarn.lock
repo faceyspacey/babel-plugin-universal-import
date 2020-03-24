@@ -817,16 +817,14 @@ babel-plugin-syntax-object-rest-spread@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
 
-babel-plugin-tester@5.5.2:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-5.5.2.tgz#593ab7978d30450c1b3ebf4aa9c884b04952fe09"
-  integrity sha512-Ycsy0wTxKZtKagDYGzuB5YlaY6nmKmbgOvPoEcrRvDLTpMEQZuD3mc+MZ7pO7TG18E2pEJRjRWv6h7FJmbe6rQ==
+babel-plugin-tester@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-9.0.0.tgz#583ecf8249090e316dc4aafc1eea8fa44c94af77"
+  integrity sha512-+S3VFL2eXeu0oMOQSUxAcu2QBxy1usnHJdh22Jl+SoMOyUwsFomEVwYC+ipbtkPuR4x+5Y6CRRUI7EDiy+SfBA==
   dependencies:
-    common-tags "^1.4.0"
-    invariant "^2.2.2"
-    lodash.merge "^4.6.0"
-    path-exists "^3.0.0"
-    strip-indent "^2.0.0"
+    lodash.mergewith "^4.6.2"
+    prettier "^2.0.1"
+    strip-indent "^3.0.0"
 
 babel-polyfill@6.23.0:
   version "6.23.0"
@@ -1402,12 +1400,6 @@ commitizen@^4.0.3:
     shelljs "0.7.6"
     strip-bom "4.0.0"
     strip-json-comments "3.0.1"
-
-common-tags@^1.4.0:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.5.1.tgz#e2e39931a013cd02253defeed89a1ad615a27f07"
-  dependencies:
-    babel-runtime "^6.26.0"
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -4169,13 +4161,14 @@ lodash.map@^4.5.1:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
 
-lodash.merge@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
-
 lodash.mergewith@^4.3.1:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.0.tgz#150cf0a16791f5903b8891eab154609274bdea55"
+
+lodash.mergewith@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
+  integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
 
 lodash.pad@^4.1.0:
   version "4.5.1"
@@ -4384,6 +4377,11 @@ mime@^1.2.11:
 mimic-fn@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.1.0.tgz#e667783d92e89dbd342818b5230b9d62a672ad18"
+
+min-indent@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.0.tgz#cfc45c37e9ec0d8f0a0ec3dd4ef7f7c3abe39256"
+  integrity sha1-z8RcN+nsDY8KDsPdTvf3w6vjklY=
 
 minimatch@3.0.2:
   version "3.0.2"
@@ -5126,6 +5124,11 @@ prettier@1.19.1:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
+
+prettier@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.2.tgz#1ba8f3eb92231e769b7fcd7cb73ae1b6b74ade08"
+  integrity sha512-5xJQIPT8BraI7ZnaDwSbu5zLrB6vvi8hVV58yHQ+QK64qrY40dULy0HSRlQ2/2IdzeBpjhDkqdcFBnFeDEMVdg==
 
 pretty-format@^21.2.1:
   version "21.2.1"
@@ -6244,6 +6247,13 @@ strip-indent@^1.0.1:
 strip-indent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
+
+strip-indent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
