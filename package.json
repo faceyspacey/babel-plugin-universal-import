@@ -22,7 +22,9 @@
     "format": "prettier --single-quote --parser=flow --semi=false --write '{src,__tests__,__test-helpers__}/**/*.js' && npm run lint",
     "precommit": "lint-staged && npm test",
     "cm": "git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "keywords": [
     "babel",
@@ -83,6 +85,8 @@
     "verbose": true
   },
   "dependencies": {
-    "@babel/helper-module-imports": "^7.0.0"
-  }
+    "@babel/helper-module-imports": "^7.0.0",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
