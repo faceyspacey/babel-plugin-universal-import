@@ -3,13 +3,8 @@
   "version": "3.1.2",
   "description": "Babel plugin to transform import() into its Universal counterpart",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/faceyspacey/babel-plugin-universal-import.git"
-  },
-  "bugs": {
-    "url": "https://github.com/faceyspacey/babel-plugin-universal-import/issues"
-  },
+  "repository": "github:faceyspacey/babel-plugin-universal-import.git",
+  "bugs": "https://github.com/faceyspacey/babel-plugin-universal-import/issues",
   "homepage": "https://github.com/faceyspacey/babel-plugin-universal-import#readme",
   "author": "James Gillmore <james@faceyspacey.com>",
   "contributors": [
