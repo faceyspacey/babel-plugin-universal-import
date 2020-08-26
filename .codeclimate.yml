@@ -22,13 +22,9 @@ engines:
 ratings:
    paths:
    - "index.js"
-   - "importCss.js"
    - "universalImport.js"
 
 exclude_paths:
-- "docs/"
-- "dist/"
 - "node_modules/"
-- ".vscode/"
 - ".eslintrc.js"
 - "**/*.snap"
