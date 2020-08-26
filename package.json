@@ -27,6 +27,10 @@
     "redux-first-router",
     "ruc"
   ],
+  "files": [
+    "*.png",
+    "universalImport.js"
+  ],
   "dependencies": {
     "@babel/helper-module-imports": "^7.0.0"
   },
