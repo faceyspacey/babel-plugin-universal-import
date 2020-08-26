@@ -28,7 +28,6 @@ ratings:
 exclude_paths:
 - "docs/"
 - "dist/"
-- "flow-typed/"
 - "node_modules/"
 - ".vscode/"
 - ".eslintrc.js"

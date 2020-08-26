@@ -8,12 +8,8 @@ module.exports = {
     sourceType: 'module',
     allowImportExportEverywhere: false
   },
-  plugins: ['flowtype'],
-  extends: ['airbnb', 'plugin:flowtype/recommended'],
+  extends: ['airbnb',],
   settings: {
-    flowtype: {
-      onlyFilesWithFlowAnnotation: true
-    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.json', '.css', '.styl']
@@ -64,7 +60,6 @@ module.exports = {
     'dot-notation': 1,
     'import/no-named-default': 1,
     'no-unused-vars': 1,
-    'flowtype/no-weak-types': 1,
     'consistent-return': 1,
     'import/prefer-default-export': 1,
     'no-console': 1,
@@ -74,7 +69,6 @@ module.exports = {
     'no-return-assign': 1,
     'no-multi-assign': 1,
     semi: [2, 'never'],
-    'flowtype/semi': [2, 'never'],
     'jsx-quotes': [2, 'prefer-single'],
     'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.js'] }],
     'spaced-comment': [2, 'always', { markers: ['?'] }],
