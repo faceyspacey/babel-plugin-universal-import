@@ -9,7 +9,6 @@ const babelOptions = {
   parserOpts: createBabylonOptions({
     plugins: ['dynamicImport']
   }),
-  presets: ['@babel/preset-react'],
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
     ['@babel/plugin-transform-modules-commonjs', { strictMode: false }]
