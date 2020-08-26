@@ -1,14 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 
 const pluginTester = require('babel-plugin-tester')
-const createBabylonOptions = require('babylon-options')
 const plugin = require('../index')
 const babel = require('@babel/core')
 
 const babelOptions = {
-  parserOpts: createBabylonOptions({
-    plugins: ['dynamicImport']
-  }),
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
     ['@babel/plugin-transform-modules-commonjs', { strictMode: false }]

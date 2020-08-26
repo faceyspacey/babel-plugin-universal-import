@@ -813,11 +813,6 @@ babel-types@^6.18.0, babel-types@^6.26.0:
     lodash "^4.17.4"
     to-fast-properties "^1.0.3"
 
-babylon-options@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/babylon-options/-/babylon-options-2.0.1.tgz#cc797a8ff65f8a98ae3f1d57a4626f987fc50620"
-  integrity sha512-P4zPuf884K30wMK14JAKYgtLzgMVbUEkxciCB0dmPFasaZNSPPLwHpX3sqi1jVCzLzpns/3MO6GfMFTedAo/3w==
-
 babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
