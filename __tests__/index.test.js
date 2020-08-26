@@ -1,8 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
 
 const { default: pluginTester } = require('babel-plugin-tester')
-const plugin = require('../index')
 const babel = require('@babel/core')
+const plugin = require('../index')
 
 const babelOptions = {
   plugins: [
@@ -126,9 +126,7 @@ test.skip('wallaby-live-coding', () => {
 
   const output = babel.transform(
     input,
-    Object.assign({}, babelOptions, {
-      plugins: babelOptions.plugins.concat([plugin])
-    })
+    { ...babelOptions, plugins: babelOptions.plugins.concat([plugin]) }
   )
 
   expect(output.code).toBeDefined()

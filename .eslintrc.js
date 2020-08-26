@@ -2,7 +2,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'module'
   },
-  extends: ['airbnb',],
+  extends: ['airbnb'],
   settings: {
     'import/resolver': {
       node: {
