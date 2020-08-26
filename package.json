@@ -17,7 +17,7 @@
     "format": "prettier --single-quote --semi=false --write '{src,__tests__,__test-helpers__}/**/*.js' && npm run lint",
     "precommit": "lint-staged --verbose && npm test",
     "cm": "git-cz",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "keywords": [
     "babel",
@@ -51,7 +51,7 @@
     "jest": "26.4.2",
     "lint-staged": "10.2.13",
     "prettier": "2.1.1",
-    "semantic-release": "6.3.6",
+    "semantic-release": "17.1.1",
     "travis-github-status": "1.6.3"
   },
   "jest": {
