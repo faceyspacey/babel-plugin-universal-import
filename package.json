@@ -27,6 +27,12 @@
     "redux-first-router",
     "ruc"
   ],
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.0.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.4.0"
+  },
   "devDependencies": {
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
@@ -54,9 +60,6 @@
     "semantic-release": "6.3.6",
     "travis-github-status": "1.6.3"
   },
-  "peerDependencies": {
-    "webpack": "^4.4.0"
-  },
   "jest": {
     "testMatch": [
       "**/?(*.)(spec|test).js?(x)"
@@ -76,8 +79,5 @@
       ]
     },
     "verbose": true
-  },
-  "dependencies": {
-    "@babel/helper-module-imports": "^7.0.0"
   }
 }
