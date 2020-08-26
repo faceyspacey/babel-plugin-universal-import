@@ -6,7 +6,6 @@ const babel = require('@babel/core')
 
 const babelOptions = {
   plugins: [
-    '@babel/plugin-syntax-dynamic-import',
     ['@babel/plugin-transform-modules-commonjs', { strictMode: false }]
   ],
   babelrc: false
