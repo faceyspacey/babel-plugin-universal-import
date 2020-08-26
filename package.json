@@ -44,7 +44,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.1.0",
     "babel-jest": "21.2.0",
-    "babel-plugin-tester": "5.5.2",
+    "babel-plugin-tester": "9.2.0",
     "commitizen": "4.0.4",
     "cz-conventional-changelog": "3.1.0",
     "eslint": "6.8.0",

@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 
-const pluginTester = require('babel-plugin-tester')
+const { default: pluginTester } = require('babel-plugin-tester')
 const plugin = require('../index')
 const babel = require('@babel/core')
 
