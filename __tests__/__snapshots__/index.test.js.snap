@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`await import() should receive a thennable without calling .then 1`] = `
+exports[`universal-import await import() should receive a thennable without calling .then: await import() should receive a thennable without calling .then 1`] = `
 
 async ({ page }) => await import(\`../components/\${page}\`);
 
@@ -29,7 +29,7 @@ async ({ page }) =>
 
 `;
 
-exports[`babelServer: true 1`] = `
+exports[`universal-import babelServer: true: babelServer: true 1`] = `
 
 import("./Foo")
 
@@ -55,7 +55,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`disableWarnings: true 1`] = `
+exports[`universal-import disableWarnings: true: disableWarnings: true 1`] = `
 
 import("./Foo")
 
@@ -88,7 +88,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`dynamic import (string template + relative paths) 1`] = `
+exports[`universal-import dynamic import (string template + relative paths): dynamic import (string template + relative paths) 1`] = `
 
 import(\`../../base/\${page}\`)
 
@@ -121,7 +121,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`dynamic import (string template - dynamic at 1st segment) 1`] = `
+exports[`universal-import dynamic import (string template - dynamic at 1st segment): dynamic import (string template - dynamic at 1st segment) 1`] = `
 
 import(\`./\${page}\`)
 
@@ -154,7 +154,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`dynamic import (string template with multiple nested folders) 1`] = `
+exports[`universal-import dynamic import (string template with multiple nested folders): dynamic import (string template with multiple nested folders) 1`] = `
 
 import(\`./base/\${page}/nested/{$another}folder\`)
 
@@ -188,7 +188,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`dynamic import (string template with nested folder) 1`] = `
+exports[`universal-import dynamic import (string template with nested folder): dynamic import (string template with nested folder) 1`] = `
 
 import(\`./base/\${page}/nested/folder\`)
 
@@ -221,7 +221,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`dynamic import (string template) 1`] = `
+exports[`universal-import dynamic import (string template): dynamic import (string template) 1`] = `
 
 import(\`./base/\${page}\`)
 
@@ -254,7 +254,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + strips out unknown things 1`] = `
+exports[`universal-import existing chunkName + strips out unknown things: existing chunkName + strips out unknown things 1`] = `
 
 import(
   /* webpackFakeProperty1: "Lazy" */
@@ -291,7 +291,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackPrefetch 1`] = `
+exports[`universal-import existing chunkName + webpackPrefetch: existing chunkName + webpackPrefetch 1`] = `
 
 import(
   /* webpackChunkName: 'Bar'*/
@@ -329,7 +329,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackPreload 1`] = `
+exports[`universal-import existing chunkName + webpackPreload: existing chunkName + webpackPreload 1`] = `
 
 import(
   /* webpackChunkName: 'Bar'*/
@@ -367,7 +367,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
+exports[`universal-import existing chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore: existing chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
 
 import(
   /* webpackChunkName: 'Bar'*/
@@ -414,7 +414,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
+exports[`universal-import existing chunkName + webpackmode + webpackInclude + webpackExclude: existing chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
 
 import(
   /* webpackChunkName: 'Bar'*/
@@ -458,7 +458,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackmode + webpackInclude 1`] = `
+exports[`universal-import existing chunkName + webpackmode + webpackInclude: existing chunkName + webpackmode + webpackInclude 1`] = `
 
 import(
   /* webpackChunkName: 'Bar'*/
@@ -499,7 +499,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName + webpackmode 1`] = `
+exports[`universal-import existing chunkName + webpackmode: existing chunkName + webpackmode 1`] = `
 
 import(/* webpackChunkName: 'Bar'*//* webpackMode: "Lazy" */"./Foo")
 
@@ -534,7 +534,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`existing chunkName 1`] = `
+exports[`universal-import existing chunkName: existing chunkName 1`] = `
 
 import(/* webpackChunkName: 'Bar' */"./Foo")
 
@@ -567,7 +567,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`multiple imports 1`] = `
+exports[`universal-import multiple imports: multiple imports 1`] = `
 
 import("one"); import("two"); import("three");
 
@@ -626,7 +626,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackPrefetch 1`] = `
+exports[`universal-import no chunkName + webpackPrefetch: no chunkName + webpackPrefetch 1`] = `
 
 import(
   /* webpackPrefetch: true */
@@ -663,7 +663,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackPreload 1`] = `
+exports[`universal-import no chunkName + webpackPreload: no chunkName + webpackPreload 1`] = `
 
 import(
   /* webpackPreload: true */
@@ -700,7 +700,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
+exports[`universal-import no chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore: no chunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
 
 import(
   /* webpackMode: "Lazy" */
@@ -746,7 +746,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
+exports[`universal-import no chunkName + webpackmode + webpackInclude + webpackExclude: no chunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
 
 import(
   /* webpackMode: "Lazy" */
@@ -789,7 +789,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackmode + webpackInclude 1`] = `
+exports[`universal-import no chunkName + webpackmode + webpackInclude: no chunkName + webpackmode + webpackInclude 1`] = `
 
 import(
   /* webpackMode: "Lazy" */
@@ -829,7 +829,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`no chunkName + webpackmode 1`] = `
+exports[`universal-import no chunkName + webpackmode: no chunkName + webpackmode 1`] = `
 
 import(
   /* webpackMode: "Lazy" */
@@ -866,7 +866,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import (import as function with relative paths + nested folder) 1`] = `
+exports[`universal-import static import (import as function with relative paths + nested folder): static import (import as function with relative paths + nested folder) 1`] = `
 
 const obj = {component:()=>import(\`../components/nestedComponent\`)}; ()=> obj.component()
 
@@ -905,7 +905,7 @@ const obj = {
 
 `;
 
-exports[`static import (relative paths + nested folder) 1`] = `
+exports[`universal-import static import (relative paths + nested folder): static import (relative paths + nested folder) 1`] = `
 
 import(\`../components/nestedComponent\`)
 
@@ -938,7 +938,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import (string template + relative paths) 1`] = `
+exports[`universal-import static import (string template + relative paths): static import (string template + relative paths) 1`] = `
 
 import(\`../../base\`)
 
@@ -971,7 +971,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import (string template) 1`] = `
+exports[`universal-import static import (string template): static import (string template) 1`] = `
 
 import(\`./base\`)
 
@@ -1004,7 +1004,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import (with file extension) 1`] = `
+exports[`universal-import static import (with file extension): static import (with file extension) 1`] = `
 
 import("./Foo.js")
 
@@ -1037,7 +1037,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import (with relative paths) 1`] = `
+exports[`universal-import static import (with relative paths): static import (with relative paths) 1`] = `
 
 import("../../Foo")
 
@@ -1070,7 +1070,7 @@ function _interopRequireDefault(obj) {
 
 `;
 
-exports[`static import 1`] = `
+exports[`universal-import static import: static import 1`] = `
 
 import("./Foo")
 
