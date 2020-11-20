@@ -24,7 +24,7 @@ const IMPORT_UNIVERSAL_DEFAULT = {
 
 const IMPORT_PATH_DEFAULT = {
   id: Symbol('pathId'),
-  source: 'path',
+  source: 'path-browserify',
   nameHint: 'path'
 }
 
