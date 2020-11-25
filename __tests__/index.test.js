@@ -2,8 +2,8 @@
 
 const pluginTester = require('babel-plugin-tester')
 const createBabylonOptions = require('babylon-options')
-const plugin = require('../index')
 const babel = require('@babel/core')
+const plugin = require('../index')
 
 const babelOptions = {
   parserOpts: createBabylonOptions({
@@ -132,9 +132,7 @@ test.skip('wallaby-live-coding', () => {
 
   const output = babel.transform(
     input,
-    Object.assign({}, babelOptions, {
-      plugins: babelOptions.plugins.concat([plugin])
-    })
+    { ...babelOptions, plugins: babelOptions.plugins.concat([plugin]) }
   )
 
   expect(output.code).toBeDefined()

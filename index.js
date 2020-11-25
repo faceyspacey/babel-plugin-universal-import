@@ -44,15 +44,11 @@ function createTrimmedChunkName(t, importArgNode) {
   if (importArgNode.quasis) {
     let quasis = importArgNode.quasis.slice(0)
     const baseDir = trimChunkNameBaseDir(quasis[0].value.cooked)
-    quasis[0] = Object.assign({}, quasis[0], {
-      value: { raw: baseDir, cooked: baseDir }
-    })
+    quasis[0] = { ...quasis[0], value: { raw: baseDir, cooked: baseDir } }
 
     quasis = quasis.map((quasi, i) => (i > 0 ? prepareQuasi(quasi) : quasi))
 
-    return Object.assign({}, importArgNode, {
-      quasis
-    })
+    return { ...importArgNode, quasis }
   }
 
   const moduleName = trimChunkNameBaseDir(importArgNode.value)
@@ -60,9 +56,13 @@ function createTrimmedChunkName(t, importArgNode) {
 }
 
 function prepareQuasi(quasi) {
-  return Object.assign({}, quasi, {
-    value: { raw: quasi.value.cooked, cooked: quasi.value.cooked }
-  })
+  return {
+    ...quasi,
+    value: {
+      raw: quasi.value.cooked,
+      cooked: quasi.value.cooked
+    }
+  }
 }
 
 function getMagicWebpackComments(importArgNode) {
@@ -71,9 +71,7 @@ function getMagicWebpackComments(importArgNode) {
   if (leadingComments && leadingComments.length) {
     leadingComments.forEach(comment => {
       try {
-        const validMagicString = validMagicStrings.filter(str =>
-          new RegExp(`${str}\\w*:`).test(comment.value)
-        )
+        const validMagicString = validMagicStrings.filter(str => new RegExp(`${str}\\w*:`).test(comment.value))
         // keep this comment if we found a match
         if (validMagicString && validMagicString.length === 1) {
           results.push(comment)
@@ -112,9 +110,9 @@ function getComponentId(t, importArgNode) {
 function existingMagicCommentChunkName(importArgNode) {
   const { leadingComments } = importArgNode
   if (
-    leadingComments &&
-    leadingComments.length &&
-    leadingComments[0].value.indexOf('webpackChunkName') !== -1
+    leadingComments
+    && leadingComments.length
+    && leadingComments[0].value.indexOf('webpackChunkName') !== -1
   ) {
     try {
       return leadingComments[0].value
@@ -147,14 +145,12 @@ function loadOption(t, loadTemplate, p, importArgNode) {
   const argPath = getImportArgPath(p)
   const generatedChunkName = getMagicCommentChunkName(importArgNode)
   const otherValidMagicComments = getMagicWebpackComments(importArgNode)
-  const existingChunkName = t.existingChunkName
+  const { existingChunkName } = t
   const chunkName = existingChunkName || generatedChunkName
 
   delete argPath.node.leadingComments
   argPath.addComment('leading', ` webpackChunkName: '${chunkName}' `)
-  otherValidMagicComments.forEach(validLeadingComment =>
-    argPath.addComment('leading', validLeadingComment.value)
-  )
+  otherValidMagicComments.forEach(validLeadingComment => argPath.addComment('leading', validLeadingComment.value))
 
   const load = loadTemplate({
     IMPORT: argPath.parent
@@ -181,7 +177,7 @@ function resolveOption(t, resolveTemplate, importArgNode) {
 }
 
 function chunkNameOption(t, chunkNameTemplate, importArgNode) {
-  const existingChunkName = t.existingChunkName
+  const { existingChunkName } = t
   const generatedChunk = createTrimmedChunkName(t, importArgNode)
   const trimmedChunkName = existingChunkName
     ? t.stringLiteral(existingChunkName)
@@ -217,8 +213,8 @@ module.exports = function universalImportPlugin({ types: t, template }) {
 
         // if being used in an await statement, return load() promise
         if (
-          p.parentPath.parentPath.isYieldExpression() || // await transformed already
-          t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
+          p.parentPath.parentPath.isYieldExpression() // await transformed already
+          || t.isAwaitExpression(p.parentPath.parentPath.node) // await not transformed already
         ) {
           const func = t.callExpression(universalImport, [
             loadOption(t, loadTemplate, p, importArgNode).value,
