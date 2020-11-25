@@ -21,116 +21,182 @@ pluginTester({
   babelOptions,
   snapshot: true,
   tests: {
+    'non-universal import':
+      'import("./Component")',
     'import from static path': `
-      import('./Component')`,
+      import universal from 'react-universal-component'
+      universal(import('./Component'))`,
     'import with babelServer: true': {
-      code: `import('./Component')`,
+      code: `
+        import universal from 'react-universal-component'
+        universal(import('./Component'))`,
       pluginOptions: { babelServer: true }
     },
     'import with disableWarnings: true': {
-      code: `import('./Component')`,
+      code: `
+        import universal from 'react-universal-component'
+        universal(import('./Component'))`,
       pluginOptions: { disableWarnings: true }
     },
     'import from static path with file extension': `
-      import('./Component.js')`,
+      import universal from 'react-universal-component'
+      universal(import('./Component.js'))`,
     'import from static path relative to grand parent folder': `
-      import('../../Component')`,
+      import universal from 'react-universal-component'
+      universal(import('../../Component'))`,
     'import from static path relative to parent sub folder': `
-      import(\`../components/Component\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`../components/Component\`))`,
     'import from static template string path': `
-      import(\`./Component\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`./Component\`))`,
     'import from static template string path relative to grand parent folder': `
-      import(\`../../Component\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`../../Component\`))`,
     'import from dynamic template string path': `
-      import(\`./\${page}\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`./\${page}\`))`,
     'import from dynamic template string path relative to sub folder': `
-      import(\`./components/\${page}\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`./components/\${page}\`))`,
     'import from dynamic template string path relative to deep sub folder': `
-      import(\`./components/\${page}/nested/Component\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`./components/\${page}/nested/Component\`))`,
     'import from dynamic template string path relative to deep sub folder (two tags)': `
-      import(\`./components/\${page}/nested/\${another}Component\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`./components/\${page}/nested/\${another}Component\`))`,
     'import from dynamic template string path relative to grand parent folder': `
-      import(\`../../components/\${page}\`)`,
+      import universal from 'react-universal-component'
+      universal(import(\`../../components/\${page}\`))`,
+    'import from static path assigned to variable': `
+      import universal from 'react-universal-component'
+      const component = import('./Component')
+      universal(component)`,
+    'import from static path returned by function': `
+      import universal from 'react-universal-component'
+      universal(function () { return import('./Component') })`,
+    'import from static path returned by arrow function': `
+      import universal from 'react-universal-component'
+      universal(() => { return import('./Component') })`,
+    'import from static path returned by arrow function with implicit return': `
+      import universal from 'react-universal-component'
+      universal(() => import('./Component'))`,
+    'import from static path returned by arrow function assigned to a variable': `
+      import universal from 'react-universal-component'
+      const loadingFn = () => { return import('./Component') }
+      universal(loadingFn)`,
+    'import from static path returned by arrow function with implicit return assigned to a variable': `
+      import universal from 'react-universal-component'
+      const loadingFn = () => import('./Component')
+      universal(loadingFn)`,
+    'import from static path returned by function declaration': `
+      import universal from 'react-universal-component'
+      function loadingFn() { return import('./Component') }
+      universal(loadingFn)`,
+    'import from static path returned by function assigned to a variable': `
+      import universal from 'react-universal-component'
+      const loadingFn = function () { return import('./Component') }
+      universal(loadingFn)`,
+    'import from static path returned by async function': `
+      import universal from 'react-universal-component'
+      universal(async ({ page }) => await import(\`../components/\${page}\`))`,
     'import from static path returned by function assigned to object property': `
-      const obj = { component: () => import('../components/Component') };
+      import universal from 'react-universal-component'
+      const obj = { component: () => universal(import('../components/Component')) };
       () => obj.component()`,
     'import returned by async function that should return a thennable without calling .then': `
-      async ({ page }) => await import(\`../components/\${page}\`)`,
+      import universal from 'react-universal-component'
+      universal(async ({ page }) => await import(\`../components/\${page}\`))`,
     'multiple imports': `
-      import('one')
-      import('two')
-      import('three')`,
+      import universal from 'react-universal-component'
+      universal(import('one'))
+      universal(import('two'))
+      universal(import('three'))`,
     'import with custom webpackChunkName': `
-      import(/* webpackChunkName: 'Bar' */'./Component')`,
+      import universal from 'react-universal-component'
+      universal(import(/* webpackChunkName: 'Bar' */'./Component'))`,
     'import with custom webpackChunkName + webpackmode': `
-      import(/* webpackChunkName: 'Bar'*//* webpackMode: 'Lazy' */'./Component')`,
+      import universal from 'react-universal-component'
+      universal(import(/* webpackChunkName: 'Bar'*//* webpackMode: 'Lazy' */'./Component'))`,
     'import with custom webpackChunkName + webpackmode + webpackInclude': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackChunkName: 'Bar'*/
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackChunkName + webpackmode + webpackInclude + webpackExclude': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackChunkName: 'Bar'*/
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
         /* webpackExclude: /(?!*test.js)$/ */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackChunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackChunkName: 'Bar'*/
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
         /* webpackExclude: /(?!*test.js)$/ */
         /* webpackIgnore: true */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackChunkName + webpackPreload': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackChunkName: 'Bar'*/
         /* webpackPreload: true */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackChunkName + webpackPrefetch': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackChunkName: 'Bar'*/
         /* webpackPrefetch: true */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackChunkName + strips out unknown things': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackFakeProperty1: 'Lazy' */
         /* webpackChunkName: 'Bar'*/
         /* webpackFakeProperty3123: /foobar/ */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackmode': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackMode: 'Lazy' */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackmode + webpackInclude': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackmode + webpackInclude + webpackExclude': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
         /* webpackExclude: /(?!*test.js)$/ */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackmode + webpackInclude + webpackExclude + webpackIgnore': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackMode: 'Lazy' */
         /* webpackInclude: /*.js$/ */
         /* webpackExclude: /(?!*test.js)$/ */
         /* webpackIgnore: true */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackPreload': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackPreload: true */
-        './Component')`,
+        './Component'))`,
     'import with custom webpackPrefetch': `
-      import(
+      import universal from 'react-universal-component'
+      universal(import(
         /* webpackPrefetch: true */
-        './Component')`
+        './Component'))`
   }
 })
 
