@@ -113,7 +113,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports[`dynamic import (string template with multiple nested folders) 1`] = `
 "
-import(\`./base/\${page}/nested/{$another}folder\`)
+import(\`./base/\${page}/nested/\${another}folder\`)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -124,13 +124,13 @@ var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _universalImport2.default)({
-  id: \\"./base/\${page}/nested/{$another}folder\\",
+  id: \\"./base/\${page}/nested/\${another}folder\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'base/[request]' */
-  \`./base/\${page}/nested/{$another}folder\`)]).then(proms => proms[0]),
-  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/{$another}folder\`),
-  resolve: () => require.resolveWeak(\`./base/\${page}/nested/{$another}folder\`),
-  chunkName: () => \`base/\${page}/nested/{$another}folder\`
+  \`./base/\${page}/nested/\${another}folder\`)]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, \`./base/\${page}/nested/\${another}folder\`),
+  resolve: () => require.resolveWeak(\`./base/\${page}/nested/\${another}folder\`),
+  chunkName: () => \`base/\${page}/nested/\${another}folder\`
 });
 "
 `;

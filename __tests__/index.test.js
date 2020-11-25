@@ -35,7 +35,7 @@ pluginTester({
     'dynamic import (string template with nested folder)':
       'import(`./base/${page}/nested/folder`)',
     'dynamic import (string template with multiple nested folders)':
-      'import(`./base/${page}/nested/{$another}folder`)',
+      'import(`./base/${page}/nested/${another}folder`)',
     'dynamic import (string template - dynamic at 1st segment)':
       'import(`./${page}`)',
     'dynamic import (string template + relative paths)':
