@@ -2,7 +2,8 @@
 
 exports[`import from dynamic template string path 1`] = `
 "
-import(\`./\${page}\`)
+import universal from 'react-universal-component'
+universal(import(\`./\${page}\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -10,9 +11,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./\${page}\\",
   load: () => Promise.all([import(
   /* webpackChunkName: '[request]' */
@@ -20,13 +23,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`./\${page}\`),
   resolve: () => require.resolveWeak(\`./\${page}\`),
   chunkName: () => \`\${page}\`
-});
+}));
 "
 `;
 
 exports[`import from dynamic template string path relative to deep sub folder (two tags) 1`] = `
 "
-import(\`./components/\${page}/nested/\${another}Component\`)
+import universal from 'react-universal-component'
+universal(import(\`./components/\${page}/nested/\${another}Component\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -34,9 +38,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./components/\${page}/nested/\${another}Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components/[request]' */
@@ -44,13 +50,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`./components/\${page}/nested/\${another}Component\`),
   resolve: () => require.resolveWeak(\`./components/\${page}/nested/\${another}Component\`),
   chunkName: () => \`components/\${page}/nested/\${another}Component\`
-});
+}));
 "
 `;
 
 exports[`import from dynamic template string path relative to deep sub folder 1`] = `
 "
-import(\`./components/\${page}/nested/Component\`)
+import universal from 'react-universal-component'
+universal(import(\`./components/\${page}/nested/Component\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -58,9 +65,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./components/\${page}/nested/Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components/[request]' */
@@ -68,13 +77,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`./components/\${page}/nested/Component\`),
   resolve: () => require.resolveWeak(\`./components/\${page}/nested/Component\`),
   chunkName: () => \`components/\${page}/nested/Component\`
-});
+}));
 "
 `;
 
 exports[`import from dynamic template string path relative to grand parent folder 1`] = `
 "
-import(\`../../components/\${page}\`)
+import universal from 'react-universal-component'
+universal(import(\`../../components/\${page}\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -82,9 +92,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"../../components/\${page}\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components/[request]' */
@@ -92,13 +104,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`../../components/\${page}\`),
   resolve: () => require.resolveWeak(\`../../components/\${page}\`),
   chunkName: () => \`components/\${page}\`
-});
+}));
 "
 `;
 
 exports[`import from dynamic template string path relative to sub folder 1`] = `
 "
-import(\`./components/\${page}\`)
+import universal from 'react-universal-component'
+universal(import(\`./components/\${page}\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -106,9 +119,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./components/\${page}\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components/[request]' */
@@ -116,13 +131,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`./components/\${page}\`),
   resolve: () => require.resolveWeak(\`./components/\${page}\`),
   chunkName: () => \`components/\${page}\`
-});
+}));
 "
 `;
 
 exports[`import from static path 1`] = `
 "
-import('./Component')
+import universal from 'react-universal-component'
+universal(import('./Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -130,9 +146,39 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
+  id: \\"./Component\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'Component' */
+  './Component')]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, './Component'),
+  resolve: () => require.resolveWeak('./Component'),
+  chunkName: () => \\"Component\\"
+}));
+"
+`;
+
+exports[`import from static path assigned to variable 1`] = `
+"
+import universal from 'react-universal-component'
+const component = import('./Component')
+universal(component)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const component = (0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -141,12 +187,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
 });
+(0, _reactUniversalComponent.default)(component);
 "
 `;
 
 exports[`import from static path relative to grand parent folder 1`] = `
 "
-import('../../Component')
+import universal from 'react-universal-component'
+universal(import('../../Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -154,9 +202,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"../../Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -164,13 +214,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, '../../Component'),
   resolve: () => require.resolveWeak('../../Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import from static path relative to parent sub folder 1`] = `
 "
-import(\`../components/Component\`)
+import universal from 'react-universal-component'
+universal(import(\`../components/Component\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -178,9 +229,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"../components/Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'components/Component' */
@@ -188,13 +241,214 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`../components/Component\`),
   resolve: () => require.resolveWeak(\`../components/Component\`),
   chunkName: () => \`components/Component\`
+}));
+"
+`;
+
+exports[`import from static path returned by arrow function 1`] = `
+"
+import universal from 'react-universal-component'
+universal(() => { return import('./Component') })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactUniversalComponent.default)(() => {
+  return (0, _universalImport2.default)({
+    id: \\"./Component\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'Component' */
+    './Component')]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, './Component'),
+    resolve: () => require.resolveWeak('./Component'),
+    chunkName: () => \\"Component\\"
+  });
 });
+"
+`;
+
+exports[`import from static path returned by arrow function assigned to a variable 1`] = `
+"
+import universal from 'react-universal-component'
+const loadingFn = () => { return import('./Component') }
+universal(loadingFn)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const loadingFn = () => {
+  return (0, _universalImport2.default)({
+    id: \\"./Component\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'Component' */
+    './Component')]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, './Component'),
+    resolve: () => require.resolveWeak('./Component'),
+    chunkName: () => \\"Component\\"
+  });
+};
+
+(0, _reactUniversalComponent.default)(loadingFn);
+"
+`;
+
+exports[`import from static path returned by arrow function with implicit return 1`] = `
+"
+import universal from 'react-universal-component'
+universal(() => import('./Component'))
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactUniversalComponent.default)(() => (0, _universalImport2.default)({
+  id: \\"./Component\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'Component' */
+  './Component')]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, './Component'),
+  resolve: () => require.resolveWeak('./Component'),
+  chunkName: () => \\"Component\\"
+}));
+"
+`;
+
+exports[`import from static path returned by arrow function with implicit return assigned to a variable 1`] = `
+"
+import universal from 'react-universal-component'
+const loadingFn = () => import('./Component')
+universal(loadingFn)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const loadingFn = () => (0, _universalImport2.default)({
+  id: \\"./Component\\",
+  load: () => Promise.all([import(
+  /* webpackChunkName: 'Component' */
+  './Component')]).then(proms => proms[0]),
+  path: () => _path2.default.join(__dirname, './Component'),
+  resolve: () => require.resolveWeak('./Component'),
+  chunkName: () => \\"Component\\"
+});
+
+(0, _reactUniversalComponent.default)(loadingFn);
+"
+`;
+
+exports[`import from static path returned by async function 1`] = `
+"
+import universal from 'react-universal-component'
+universal(async ({ page }) => await import(\`../components/\${page}\`))
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactUniversalComponent.default)(async ({
+  page
+}) => await (0, _universalImport2.default)(() => Promise.all([import(
+/* webpackChunkName: 'components/[request]' */
+\`../components/\${page}\`)]).then(proms => proms[0]), false));
+"
+`;
+
+exports[`import from static path returned by function 1`] = `
+"
+import universal from 'react-universal-component'
+universal(function () { return import('./Component') })
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactUniversalComponent.default)(function () {
+  return (0, _universalImport2.default)({
+    id: \\"./Component\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'Component' */
+    './Component')]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, './Component'),
+    resolve: () => require.resolveWeak('./Component'),
+    chunkName: () => \\"Component\\"
+  });
+});
+"
+`;
+
+exports[`import from static path returned by function assigned to a variable 1`] = `
+"
+import universal from 'react-universal-component'
+const loadingFn = function () { return import('./Component') }
+universal(loadingFn)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const loadingFn = function () {
+  return (0, _universalImport2.default)({
+    id: \\"./Component\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'Component' */
+    './Component')]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, './Component'),
+    resolve: () => require.resolveWeak('./Component'),
+    chunkName: () => \\"Component\\"
+  });
+};
+
+(0, _reactUniversalComponent.default)(loadingFn);
 "
 `;
 
 exports[`import from static path returned by function assigned to object property 1`] = `
 "
-const obj = { component: () => import('../components/Component') };
+import universal from 'react-universal-component'
+const obj = { component: () => universal(import('../components/Component')) };
 () => obj.component()
 
       ↓ ↓ ↓ ↓ ↓ ↓
@@ -203,10 +457,12 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const obj = {
-  component: () => (0, _universalImport2.default)({
+  component: () => (0, _reactUniversalComponent.default)((0, _universalImport2.default)({
     id: \\"../components/Component\\",
     load: () => Promise.all([import(
     /* webpackChunkName: 'components/Component' */
@@ -214,16 +470,18 @@ const obj = {
     path: () => _path2.default.join(__dirname, '../components/Component'),
     resolve: () => require.resolveWeak('../components/Component'),
     chunkName: () => \\"components/Component\\"
-  })
+  }))
 };
 
 () => obj.component();
 "
 `;
 
-exports[`import from static path with file extension 1`] = `
+exports[`import from static path returned by function declaration 1`] = `
 "
-import('./Component.js')
+import universal from 'react-universal-component'
+function loadingFn() { return import('./Component') }
+universal(loadingFn)
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -231,9 +489,42 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+function loadingFn() {
+  return (0, _universalImport2.default)({
+    id: \\"./Component\\",
+    load: () => Promise.all([import(
+    /* webpackChunkName: 'Component' */
+    './Component')]).then(proms => proms[0]),
+    path: () => _path2.default.join(__dirname, './Component'),
+    resolve: () => require.resolveWeak('./Component'),
+    chunkName: () => \\"Component\\"
+  });
+}
+
+(0, _reactUniversalComponent.default)(loadingFn);
+"
+`;
+
+exports[`import from static path with file extension 1`] = `
+"
+import universal from 'react-universal-component'
+universal(import('./Component.js'))
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _path2 = _interopRequireDefault(require(\\"path\\"));
+
+var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
+
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component.js\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -241,13 +532,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component.js'),
   resolve: () => require.resolveWeak('./Component.js'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import from static template string path 1`] = `
 "
-import(\`./Component\`)
+import universal from 'react-universal-component'
+universal(import(\`./Component\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -255,9 +547,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -265,13 +559,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`./Component\`),
   resolve: () => require.resolveWeak(\`./Component\`),
   chunkName: () => \`Component\`
-});
+}));
 "
 `;
 
 exports[`import from static template string path relative to grand parent folder 1`] = `
 "
-import(\`../../Component\`)
+import universal from 'react-universal-component'
+universal(import(\`../../Component\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -279,9 +574,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"../../Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -289,31 +586,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, \`../../Component\`),
   resolve: () => require.resolveWeak(\`../../Component\`),
   chunkName: () => \`Component\`
-});
+}));
 "
 `;
 
 exports[`import returned by async function that should return a thennable without calling .then 1`] = `
 "
-async ({ page }) => await import(\`../components/\${page}\`)
+import universal from 'react-universal-component'
+universal(async ({ page }) => await import(\`../components/\${page}\`))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-async ({
+(0, _reactUniversalComponent.default)(async ({
   page
 }) => await (0, _universalImport2.default)(() => Promise.all([import(
 /* webpackChunkName: 'components/[request]' */
-\`../components/\${page}\`)]).then(proms => proms[0]), false);
+\`../components/\${page}\`)]).then(proms => proms[0]), false));
 "
 `;
 
 exports[`import with babelServer: true 1`] = `
 "
-import('./Component')
+import universal from 'react-universal-component'
+universal(import('./Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -321,24 +622,27 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + strips out unknown things 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackFakeProperty1: 'Lazy' */
   /* webpackChunkName: 'Bar'*/
   /* webpackFakeProperty3123: /foobar/ */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -346,26 +650,29 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
-  /* webpackChunkName: 'Component' */
+  /* webpackChunkName: 'Bar' */
   './Component')]).then(proms => proms[0]),
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
-  chunkName: () => \\"Component\\"
-});
+  chunkName: () => \\"Bar\\"
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackPrefetch 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackChunkName: 'Bar'*/
   /* webpackPrefetch: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -373,9 +680,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackPrefetch: true */
@@ -385,16 +694,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackPreload 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackChunkName: 'Bar'*/
   /* webpackPreload: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -402,9 +712,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackPreload: true */
@@ -414,19 +726,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackChunkName: 'Bar'*/
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
   /* webpackExclude: /(?!*test.js)$/ */
   /* webpackIgnore: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -434,9 +747,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackIgnore: true */
@@ -452,18 +767,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackmode + webpackInclude + webpackExclude 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackChunkName: 'Bar'*/
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
   /* webpackExclude: /(?!*test.js)$/ */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -471,9 +787,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackExclude: /(?!*test.js)$/ */
@@ -487,17 +805,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackmode + webpackInclude 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackChunkName: 'Bar'*/
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -505,9 +824,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackInclude: /*.js$/ */
@@ -519,13 +840,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName + webpackmode 1`] = `
 "
-import(/* webpackChunkName: 'Bar'*//* webpackMode: 'Lazy' */'./Component')
+import universal from 'react-universal-component'
+universal(import(/* webpackChunkName: 'Bar'*//* webpackMode: 'Lazy' */'./Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -533,9 +855,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackMode: 'Lazy' */
@@ -545,13 +869,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackChunkName 1`] = `
 "
-import(/* webpackChunkName: 'Bar' */'./Component')
+import universal from 'react-universal-component'
+universal(import(/* webpackChunkName: 'Bar' */'./Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -559,9 +884,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Bar' */
@@ -569,15 +896,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Bar\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackPrefetch 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackPrefetch: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -585,9 +913,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackPrefetch: true */
@@ -597,15 +927,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackPreload 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackPreload: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -613,9 +944,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackPreload: true */
@@ -625,18 +958,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackmode + webpackInclude + webpackExclude + webpackIgnore 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
   /* webpackExclude: /(?!*test.js)$/ */
   /* webpackIgnore: true */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -644,9 +978,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackIgnore: true */
@@ -662,17 +998,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackmode + webpackInclude + webpackExclude 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
   /* webpackExclude: /(?!*test.js)$/ */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -680,9 +1017,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackExclude: /(?!*test.js)$/ */
@@ -696,16 +1035,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackmode + webpackInclude 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackMode: 'Lazy' */
   /* webpackInclude: /*.js$/ */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -713,9 +1053,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackInclude: /*.js$/ */
@@ -727,15 +1069,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with custom webpackmode 1`] = `
 "
-import(
+import universal from 'react-universal-component'
+universal(import(
   /* webpackMode: 'Lazy' */
-  './Component')
+  './Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -743,9 +1086,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackMode: 'Lazy' */
@@ -755,13 +1100,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`import with disableWarnings: true 1`] = `
 "
-import('./Component')
+import universal from 'react-universal-component'
+universal(import('./Component'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -769,9 +1115,11 @@ var _path2 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport2 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport2.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport2.default)({
   id: \\"./Component\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'Component' */
@@ -779,15 +1127,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path2.default.join(__dirname, './Component'),
   resolve: () => require.resolveWeak('./Component'),
   chunkName: () => \\"Component\\"
-});
+}));
 "
 `;
 
 exports[`multiple imports 1`] = `
 "
-import('one')
-import('two')
-import('three')
+import universal from 'react-universal-component'
+universal(import('one'))
+universal(import('two'))
+universal(import('three'))
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
@@ -795,9 +1144,11 @@ var _path4 = _interopRequireDefault(require(\\"path\\"));
 
 var _universalImport4 = _interopRequireDefault(require(\\"babel-plugin-universal-import/universalImport\\"));
 
+var _reactUniversalComponent = _interopRequireDefault(require(\\"react-universal-component\\"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _universalImport4.default)({
+(0, _reactUniversalComponent.default)((0, _universalImport4.default)({
   id: \\"one\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'one' */
@@ -805,8 +1156,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path4.default.join(__dirname, 'one'),
   resolve: () => require.resolveWeak('one'),
   chunkName: () => \\"one\\"
-});
-(0, _universalImport4.default)({
+}));
+(0, _reactUniversalComponent.default)((0, _universalImport4.default)({
   id: \\"two\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'two' */
@@ -814,8 +1165,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path4.default.join(__dirname, 'two'),
   resolve: () => require.resolveWeak('two'),
   chunkName: () => \\"two\\"
-});
-(0, _universalImport4.default)({
+}));
+(0, _reactUniversalComponent.default)((0, _universalImport4.default)({
   id: \\"three\\",
   load: () => Promise.all([import(
   /* webpackChunkName: 'three' */
@@ -823,6 +1174,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: () => _path4.default.join(__dirname, 'three'),
   resolve: () => require.resolveWeak('three'),
   chunkName: () => \\"three\\"
-});
+}));
+"
+`;
+
+exports[`non-universal import 1`] = `
+"
+import(\\"./Component\\")
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import(\\"./Component\\");
 "
 `;
